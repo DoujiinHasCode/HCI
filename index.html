@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NVIDIA — Just Plug It In.</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --black:#0b0c0a;
@@ -20,978 +22,5462 @@
     --error:#ff6b5e;
     --radius:14px;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
   body{
     background:var(--black);
     color:var(--white);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
   }
-  .display{font-family:'Archivo Black',sans-serif; letter-spacing:-0.01em; text-transform:uppercase;}
-  .mono{font-family:'Space Mono',monospace;}
-  a{color:inherit; text-decoration:none;}
-  ul{list-style:none;}
-  img,svg{display:block;}
-  button{font-family:inherit;}
 
-  /* ---------- ACCESSIBILITY / FEEDBACK: visible focus everywhere ---------- */
-  a:focus-visible, button:focus-visible, input:focus-visible, .chip:focus-visible, .tile:focus-visible{
-    outline:2px solid var(--nv-glow); outline-offset:3px; border-radius:4px;
+  body.checkout-open{
+    overflow:hidden;
   }
+
+  .display{
+    font-family:'Archivo Black',sans-serif;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+  }
+
+  .mono{
+    font-family:'Space Mono',monospace;
+  }
+
+  a{
+    color:inherit;
+    text-decoration:none;
+  }
+
+  ul{
+    list-style:none;
+  }
+
+  img,svg{
+    display:block;
+  }
+
+  button{
+    font-family:inherit;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  .chip:focus-visible,
+  .tile:focus-visible{
+    outline:2px solid var(--nv-glow);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
   .skip-link{
-    position:absolute; left:16px; top:-60px; background:var(--nv-green); color:#08240a;
-    padding:10px 16px; border-radius:8px; font-weight:700; font-size:13px; z-index:1000; transition:top .2s;
+    position:absolute;
+    left:16px;
+    top:-60px;
+    background:var(--nv-green);
+    color:#08240a;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:13px;
+    z-index:1000;
+    transition:top .2s;
   }
-  .skip-link:focus{top:16px;}
 
-  /* ---------- NAV (CONSISTENCY + CLEAR NAVIGATION + VISIBILITY) ---------- */
+  .skip-link:focus{
+    top:16px;
+  }
+
+  /* =========================
+     NAVIGATION
+  ========================= */
+
   header{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 32px; height:64px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 32px;
+    height:64px;
     background:rgba(11,12,10,0.9);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
+
   .logo{
     font-family:'Archivo Black',sans-serif;
-    font-size:20px; letter-spacing:0.04em;
-    display:flex; align-items:center; gap:8px;
+    font-size:20px;
+    letter-spacing:0.04em;
+    display:flex;
+    align-items:center;
+    gap:8px;
   }
-  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--nv-green); box-shadow:0 0 12px var(--nv-glow);}
-  nav.primary{display:flex; gap:8px;}
+
+  .logo .dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--nv-green);
+    box-shadow:0 0 12px var(--nv-glow);
+  }
+
+  nav.primary{
+    display:flex;
+    gap:8px;
+  }
+
   nav.primary a{
-    font-size:13px; font-weight:600; letter-spacing:0.02em; color:var(--off);
-    padding:8px 12px; border-radius:8px; position:relative; transition:color .2s, background .2s;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--off);
+    padding:8px 12px;
+    border-radius:8px;
+    position:relative;
+    transition:color .2s, background .2s;
   }
-  nav.primary a:hover{color:var(--white); background:rgba(246,247,242,0.06);}
-  nav.primary a.active{color:var(--white);}
+
+  nav.primary a:hover{
+    color:var(--white);
+    background:rgba(246,247,242,0.06);
+  }
+
+  nav.primary a.active{
+    color:var(--white);
+  }
+
   nav.primary a.active::after{
-    content:''; position:absolute; left:12px; right:12px; bottom:2px; height:2px; background:var(--nv-green); border-radius:2px;
+    content:'';
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:2px;
+    height:2px;
+    background:var(--nv-green);
+    border-radius:2px;
   }
-  .nav-right{display:flex; align-items:center; gap:8px; position:relative;}
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    position:relative;
+  }
+
   .icon-btn{
-    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
-    border:none; background:transparent; border-radius:8px; cursor:pointer; color:var(--white); transition:background .2s;
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    background:transparent;
+    border-radius:8px;
+    cursor:pointer;
+    color:var(--white);
+    transition:background .2s;
   }
-  .icon-btn:hover{background:rgba(246,247,242,0.08);}
-  .icon-btn svg{width:18px; height:18px;}
+
+  .icon-btn:hover{
+    background:rgba(246,247,242,0.08);
+  }
+
+  .icon-btn svg{
+    width:18px;
+    height:18px;
+  }
+
   .cart-count{
-    position:absolute; top:2px; right:2px;
-    font-size:10px; background:var(--nv-green); color:var(--black); border-radius:50%;
-    width:16px;height:16px; display:flex; align-items:center; justify-content:center; font-weight:800;
+    position:absolute;
+    top:2px;
+    right:2px;
+    font-size:10px;
+    background:var(--nv-green);
+    color:var(--black);
+    border-radius:50%;
+    width:16px;
+    height:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
     font-family:'Space Mono',monospace;
     transition:transform .25s;
   }
-  .cart-count.bump{transform:scale(1.35);}
+
+  .cart-count.bump{
+    transform:scale(1.35);
+  }
 
   .search-panel{
-    position:absolute; top:52px; right:120px; width:280px;
-    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px;
+    position:absolute;
+    top:52px;
+    right:120px;
+    width:280px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
     box-shadow:0 20px 40px rgba(0,0,0,0.5);
     display:none;
   }
-  .search-panel.open{display:block;}
-  .search-panel input{
-    width:100%; background:var(--near-black); border:1px solid var(--line); border-radius:8px;
-    padding:10px 12px; color:var(--white); font-size:13px; outline:none;
+
+  .search-panel.open{
+    display:block;
   }
-  .search-panel input:focus{border-color:var(--nv-green);}
-  .search-hint{font-size:11px; color:var(--dim); margin-top:8px;}
+
+  .search-panel input{
+    width:100%;
+    background:var(--near-black);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    color:var(--white);
+    font-size:13px;
+    outline:none;
+  }
+
+  .search-panel input:focus{
+    border-color:var(--nv-green);
+  }
+
+  .search-hint{
+    font-size:11px;
+    color:var(--dim);
+    margin-top:8px;
+  }
 
   .cart-panel{
-    position:absolute; top:52px; right:0; width:300px;
-    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px;
+    position:absolute;
+    top:52px;
+    right:0;
+    width:330px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
     box-shadow:0 20px 40px rgba(0,0,0,0.5);
-    display:none; max-height:360px; overflow-y:auto;
+    display:none;
+    max-height:500px;
+    overflow-y:auto;
   }
-  .cart-panel.open{display:block;}
-  .cart-panel h4{font-size:13px; text-transform:uppercase; letter-spacing:0.05em; color:var(--dim); margin-bottom:12px;}
-  .cart-item{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); gap:10px;}
-  .cart-item:last-of-type{border-bottom:none;}
-  .cart-item-name{font-size:13px; font-weight:600;}
-  .cart-item-price{font-size:12px; color:var(--dim); font-family:'Space Mono',monospace;}
-  .cart-remove{background:none; border:none; color:var(--dim); font-size:11px; text-decoration:underline; cursor:pointer;}
-  .cart-remove:hover{color:var(--error);}
-  .cart-empty{font-size:13px; color:var(--dim); padding:10px 0;}
 
-  @media(max-width:860px){ nav.primary{display:none;} .search-panel{right:60px;} }
+  .cart-panel.open{
+    display:block;
+  }
 
-  /* ---------- HERO ---------- */
+  .cart-panel h4{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--dim);
+    margin-bottom:12px;
+  }
+
+  .cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    gap:10px;
+  }
+
+  .cart-item:last-of-type{
+    border-bottom:none;
+  }
+
+  .cart-item-name{
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .cart-item-price{
+    font-size:12px;
+    color:var(--dim);
+    font-family:'Space Mono',monospace;
+    margin-top:3px;
+  }
+
+  .cart-remove{
+    background:none;
+    border:none;
+    color:var(--dim);
+    font-size:11px;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+
+  .cart-remove:hover{
+    color:var(--error);
+  }
+
+  .cart-empty{
+    font-size:13px;
+    color:var(--dim);
+    padding:10px 0;
+  }
+
+  .checkout-cart-btn{
+    width:100%;
+    justify-content:center;
+    margin-top:14px;
+    padding:12px 18px;
+  }
+
+  @media(max-width:860px){
+    nav.primary{
+      display:none;
+    }
+
+    .search-panel{
+      right:60px;
+    }
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+
   .hero{
-    position:relative; min-height:100vh;
-    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
     padding:0 32px 64px;
     background:
       radial-gradient(ellipse at 78% 30%, rgba(118,185,0,0.20), transparent 55%),
       linear-gradient(180deg, #0b0c0a 0%, #0e0f0b 60%, #0b0c0a 100%);
     overflow:hidden;
   }
+
   .hero-gpu{
-    position:absolute; top:50%; right:-6%; transform:translateY(-52%);
-    width:min(58vw, 780px); opacity:0.95; filter:drop-shadow(0 0 60px rgba(118,185,0,0.25));
+    position:absolute;
+    top:50%;
+    right:-6%;
+    transform:translateY(-52%);
+    width:min(58vw, 780px);
+    opacity:0.95;
+    filter:drop-shadow(0 0 60px rgba(118,185,0,0.25));
     animation:float 7s ease-in-out infinite;
   }
-  @keyframes float{ 0%,100%{transform:translateY(-52%);} 50%{transform:translateY(-56%);} }
-  .fan{ transform-origin:center; animation:spin 3.4s linear infinite; }
-  .fan.slow{ animation-duration:4.6s; }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  @keyframes float{
+    0%,100%{
+      transform:translateY(-52%);
+    }
+
+    50%{
+      transform:translateY(-56%);
+    }
+  }
+
+  .fan{
+    transform-origin:center;
+    animation:spin 3.4s linear infinite;
+  }
+
+  .fan.slow{
+    animation-duration:4.6s;
+  }
+
+  @keyframes spin{
+    to{
+      transform:rotate(360deg);
+    }
+  }
 
   .hero-eyebrow{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Space Mono',monospace; font-size:12px; color:var(--nv-glow);
-    margin-bottom:18px; letter-spacing:0.08em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--nv-glow);
+    margin-bottom:18px;
+    letter-spacing:0.08em;
   }
-  .hero-eyebrow::before{content:''; width:26px; height:1px; background:var(--nv-glow);}
+
+  .hero-eyebrow::before{
+    content:'';
+    width:26px;
+    height:1px;
+    background:var(--nv-glow);
+  }
+
   h1.hero-title{
     font-size:clamp(52px, 9vw, 128px);
     line-height:0.92;
     max-width:900px;
     margin-bottom:22px;
   }
+
   .hero-sub{
-    font-size:17px; color:var(--off); max-width:460px; line-height:1.55; margin-bottom:34px; font-weight:500;
+    font-size:17px;
+    color:var(--off);
+    max-width:460px;
+    line-height:1.55;
+    margin-bottom:34px;
+    font-weight:500;
   }
-  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+
+  .cta-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
   .btn{
-    padding:15px 28px; font-size:13px; font-weight:700; letter-spacing:0.03em;
-    border-radius:999px; cursor:pointer; border:1px solid transparent; transition:all .18s;
-    text-transform:uppercase; display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    border-radius:999px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all .18s;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
   }
-  .btn:active{transform:scale(0.97);}
-  .btn-solid{background:var(--nv-green); color:#08240a;}
-  .btn-solid:hover{background:var(--nv-glow);}
-  .btn-outline{border-color:var(--line); color:var(--white); background:transparent;}
-  .btn-outline:hover{border-color:var(--white);}
+
+  .btn:active{
+    transform:scale(0.97);
+  }
+
+  .btn-solid{
+    background:var(--nv-green);
+    color:#08240a;
+  }
+
+  .btn-solid:hover{
+    background:var(--nv-glow);
+  }
+
+  .btn-outline{
+    border-color:var(--line);
+    color:var(--white);
+    background:transparent;
+  }
+
+  .btn-outline:hover{
+    border-color:var(--white);
+  }
 
   .hero-stats{
-    display:flex; gap:36px; z-index:2; margin-top:44px; flex-wrap:wrap; position:relative;
+    display:flex;
+    gap:36px;
+    z-index:2;
+    margin-top:44px;
+    flex-wrap:wrap;
+    position:relative;
   }
-  @media(max-width:700px){ .hero-gpu{opacity:0.25; width:100vw; right:-10%;} }
-  .stat{border-left:2px solid var(--nv-green); padding-left:12px;}
-  .stat .num{font-family:'Space Mono',monospace; font-size:22px; font-weight:700;}
-  .stat .lbl{font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:2px;}
 
-  /* ---------- SECTION HEADS (CONSISTENCY) ---------- */
-  .section{padding:110px 32px; scroll-margin-top:64px;}
+  @media(max-width:700px){
+    .hero-gpu{
+      opacity:0.25;
+      width:100vw;
+      right:-10%;
+    }
+  }
+
+  .stat{
+    border-left:2px solid var(--nv-green);
+    padding-left:12px;
+  }
+
+  .stat .num{
+    font-family:'Space Mono',monospace;
+    font-size:22px;
+    font-weight:700;
+  }
+
+  .stat .lbl{
+    font-size:11px;
+    color:var(--dim);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:2px;
+  }
+
+  /* =========================
+     SECTIONS
+  ========================= */
+
+  .section{
+    padding:110px 32px;
+    scroll-margin-top:64px;
+  }
+
   .section-head{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    margin-bottom:44px; flex-wrap:wrap; gap:16px;
-    border-bottom:1px solid var(--line); padding-bottom:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    flex-wrap:wrap;
+    gap:16px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
   }
-  .section-head h2{font-size:clamp(30px,4vw,46px); line-height:1;}
-  .section-head p{color:var(--dim); font-size:14px; max-width:340px;}
 
-  /* ---------- CATEGORY TILES ---------- */
+  .section-head h2{
+    font-size:clamp(30px,4vw,46px);
+    line-height:1;
+  }
+
+  .section-head p{
+    color:var(--dim);
+    font-size:14px;
+    max-width:340px;
+  }
+
+  /* =========================
+     CATEGORY TILES
+  ========================= */
+
   .tiles{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2px;
     background:var(--line);
   }
-  @media(max-width:900px){ .tiles{grid-template-columns:repeat(2,1fr);} }
+
+  @media(max-width:900px){
+    .tiles{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
   .tile{
-    background:var(--near-black); aspect-ratio:3/4;
-    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
-    padding:46px 24px 30px; text-align:center;
-    position:relative; overflow:hidden; cursor:pointer; border:none; color:var(--white); width:100%;
+    background:var(--near-black);
+    aspect-ratio:3/4;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding:46px 24px 30px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    border:none;
+    color:var(--white);
+    width:100%;
   }
+
   .tile::before{
-    content:''; position:absolute; inset:0;
+    content:'';
+    position:absolute;
+    inset:0;
     background:radial-gradient(circle at 50% 20%, rgba(118,185,0,0.18), transparent 60%);
-    opacity:0; transition:opacity .35s;
+    opacity:0;
+    transition:opacity .35s;
   }
-  .tile:hover::before, .tile:focus-visible::before{opacity:1;}
 
-  /* ---------- CSS-drawn tile icons (thin outline style, no SVG/images) ---------- */
-  .css-icon{position:relative; width:72px; height:72px; margin-bottom:24px; opacity:0.92; transition:transform .3s, opacity .3s;}
-  .tile:hover .css-icon{transform:translateY(-4px); opacity:1;}
+  .tile:hover::before,
+  .tile:focus-visible::before{
+    opacity:1;
+  }
 
-  /* 4K Gaming: outlined monitor on a stand */
-  .icon-display .screen{position:absolute; top:12px; left:8px; width:56px; height:38px; border:2px solid var(--white); border-radius:4px;}
-  .icon-display .neck{position:absolute; bottom:14px; left:50%; transform:translateX(-50%); width:2px; height:9px; background:var(--white);}
-  .icon-display .base{position:absolute; bottom:12px; left:50%; transform:translateX(-50%); width:28px; height:2px; background:var(--white); border-radius:1px;}
+  .css-icon{
+    position:relative;
+    width:72px;
+    height:72px;
+    margin-bottom:24px;
+    opacity:0.92;
+    transition:transform .3s, opacity .3s;
+  }
 
-  /* Creator Studio: circle with three radiating spokes ("accelerate creativity") */
-  .icon-creativity .ring{position:absolute; inset:4px; border:2px solid var(--white); border-radius:50%;}
-  .icon-creativity .spoke{position:absolute; top:50%; left:50%; width:2px; height:23px; background:var(--white); transform-origin:top center;}
-  .icon-creativity .spoke::before{content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:5px; height:5px; border-radius:50%; background:var(--white);}
-  .icon-creativity .s1{transform:translate(-50%,-100%) rotate(0deg);}
-  .icon-creativity .s2{transform:translate(-50%,-100%) rotate(120deg);}
-  .icon-creativity .s3{transform:translate(-50%,-100%) rotate(240deg);}
+  .tile:hover .css-icon{
+    transform:translateY(-4px);
+    opacity:1;
+  }
 
-  /* AI & ML Dev: layered frames with a verified/AI badge */
-  .icon-ai-stack .layer{position:absolute; border:2px solid var(--white); border-radius:5px;}
-  .icon-ai-stack .l1{width:42px; height:32px; top:10px; left:6px; opacity:0.55;}
-  .icon-ai-stack .l2{width:42px; height:32px; top:16px; left:12px;}
-  .icon-ai-stack .badge{position:absolute; bottom:6px; right:2px; width:22px; height:22px; border-radius:50%; border:2px solid var(--white); background:var(--near-black); display:flex; align-items:center; justify-content:center;}
-  .icon-ai-stack .badge::after{content:''; width:9px; height:5px; border-left:2px solid var(--white); border-bottom:2px solid var(--white); transform:rotate(-45deg) translateY(-1px);}
+  .icon-display .screen{
+    position:absolute;
+    top:12px;
+    left:8px;
+    width:56px;
+    height:38px;
+    border:2px solid var(--white);
+    border-radius:4px;
+  }
 
-  /* Small Form Factor: everything condensed, delivered into a compact tray */
-  .icon-compact .shaft{position:absolute; top:8px; left:50%; transform:translateX(-50%); width:2px; height:24px; background:var(--white);}
-  .icon-compact .head{position:absolute; top:30px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:9px solid transparent; border-right:9px solid transparent; border-top:11px solid var(--white);}
-  .icon-compact .tray{position:absolute; bottom:14px; left:15px; right:15px; height:2px; background:var(--white);}
-  .icon-compact .tray::before, .icon-compact .tray::after{content:''; position:absolute; bottom:0; width:2px; height:10px; background:var(--white);}
-  .icon-compact .tray::before{left:0;}
-  .icon-compact .tray::after{right:0;}
+  .icon-display .neck{
+    position:absolute;
+    bottom:14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:2px;
+    height:9px;
+    background:var(--white);
+  }
 
-  .tile h3{font-size:18px; margin-bottom:8px;}
-  .tile span{font-size:12px; color:var(--dim); max-width:200px; line-height:1.5;}
+  .icon-display .base{
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:28px;
+    height:2px;
+    background:var(--white);
+    border-radius:1px;
+  }
 
-  /* ---------- PRODUCT GRID (EFFICIENCY: live filtering) ---------- */
+  .icon-creativity .ring{
+    position:absolute;
+    inset:4px;
+    border:2px solid var(--white);
+    border-radius:50%;
+  }
+
+  .icon-creativity .spoke{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:2px;
+    height:23px;
+    background:var(--white);
+    transform-origin:top center;
+  }
+
+  .icon-creativity .spoke::before{
+    content:'';
+    position:absolute;
+    top:-3px;
+    left:50%;
+    transform:translateX(-50%);
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--white);
+  }
+
+  .icon-creativity .s1{
+    transform:translate(-50%,-100%) rotate(0deg);
+  }
+
+  .icon-creativity .s2{
+    transform:translate(-50%,-100%) rotate(120deg);
+  }
+
+  .icon-creativity .s3{
+    transform:translate(-50%,-100%) rotate(240deg);
+  }
+
+  .icon-ai-stack .layer{
+    position:absolute;
+    border:2px solid var(--white);
+    border-radius:5px;
+  }
+
+  .icon-ai-stack .l1{
+    width:42px;
+    height:32px;
+    top:10px;
+    left:6px;
+    opacity:0.55;
+  }
+
+  .icon-ai-stack .l2{
+    width:42px;
+    height:32px;
+    top:16px;
+    left:12px;
+  }
+
+  .icon-ai-stack .badge{
+    position:absolute;
+    bottom:6px;
+    right:2px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    border:2px solid var(--white);
+    background:var(--near-black);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .icon-ai-stack .badge::after{
+    content:'';
+    width:9px;
+    height:5px;
+    border-left:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    transform:rotate(-45deg) translateY(-1px);
+  }
+
+  .icon-compact .shaft{
+    position:absolute;
+    top:8px;
+    left:50%;
+    transform:translateX(-50%);
+    width:2px;
+    height:24px;
+    background:var(--white);
+  }
+
+  .icon-compact .head{
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-top:11px solid var(--white);
+  }
+
+  .icon-compact .tray{
+    position:absolute;
+    bottom:14px;
+    left:15px;
+    right:15px;
+    height:2px;
+    background:var(--white);
+  }
+
+  .icon-compact .tray::before,
+  .icon-compact .tray::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    width:2px;
+    height:10px;
+    background:var(--white);
+  }
+
+  .icon-compact .tray::before{
+    left:0;
+  }
+
+  .icon-compact .tray::after{
+    right:0;
+  }
+
+  .tile h3{
+    font-size:18px;
+    margin-bottom:8px;
+  }
+
+  .tile span{
+    font-size:12px;
+    color:var(--dim);
+    max-width:200px;
+    line-height:1.5;
+  }
+
+  /* =========================
+     PRODUCT GRID
+  ========================= */
+
   .filter-bar{
-    display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+    flex-wrap:wrap;
+    gap:16px;
   }
-  .filter-row{display:flex; gap:10px; flex-wrap:wrap;}
+
+  .filter-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
   .chip{
-    padding:9px 18px; border:1px solid var(--line); border-radius:999px; background:transparent;
-    font-size:12px; font-weight:600; color:var(--off); cursor:pointer; transition:all .2s;
+    padding:9px 18px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:transparent;
+    font-size:12px;
+    font-weight:600;
+    color:var(--off);
+    cursor:pointer;
+    transition:all .2s;
   }
-  .chip.active{border-color:var(--nv-green); color:var(--white); background:rgba(118,185,0,0.1);}
-  .chip:hover{border-color:var(--nv-green); color:var(--white);}
-  .result-count{font-size:12px; color:var(--dim); font-family:'Space Mono',monospace;}
-  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:28px;}
-  @media(max-width:1100px){ .grid{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:600px){ .grid{grid-template-columns:1fr;} }
+
+  .chip.active{
+    border-color:var(--nv-green);
+    color:var(--white);
+    background:rgba(118,185,0,0.1);
+  }
+
+  .chip:hover{
+    border-color:var(--nv-green);
+    color:var(--white);
+  }
+
+  .result-count{
+    font-size:12px;
+    color:var(--dim);
+    font-family:'Space Mono',monospace;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+  }
+
+  @media(max-width:1100px){
+    .grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  @media(max-width:600px){
+    .grid{
+      grid-template-columns:1fr;
+    }
+  }
+
   .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:22px; transition:transform .25s, border-color .25s;
-    display:flex; flex-direction:column;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    transition:transform .25s, border-color .25s;
+    display:flex;
+    flex-direction:column;
   }
-  .card:hover{transform:translateY(-6px); border-color:rgba(118,185,0,0.4);}
-  .card.hidden{display:none;}
+
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(118,185,0,0.4);
+  }
+
+  .card.hidden{
+    display:none;
+  }
+
   .card-badge{
-    align-self:flex-start; font-size:10px; font-weight:800; letter-spacing:0.05em;
-    background:var(--nv-green); color:#08240a; padding:4px 9px; border-radius:5px; margin-bottom:14px;
+    align-self:flex-start;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:0.05em;
+    background:var(--nv-green);
+    color:#08240a;
+    padding:4px 9px;
+    border-radius:5px;
+    margin-bottom:14px;
     text-transform:uppercase;
   }
-  .card-badge.ghost{background:transparent; border:1px solid var(--line); color:var(--dim);}
-  .card-art{height:130px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
-  .card-art svg{width:100%; height:auto; filter:drop-shadow(0 8px 20px rgba(0,0,0,0.5));}
-  .card h4{font-size:16px; margin-bottom:4px;}
-  .card .desc{font-size:12px; color:var(--dim); margin-bottom:16px; line-height:1.5;}
-  .card-foot{display:flex; justify-content:space-between; align-items:center; margin-top:auto; gap:10px;}
-  .price{font-family:'Space Mono',monospace; font-weight:700; font-size:15px;}
+
+  .card-badge.ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--dim);
+  }
+
+  .card-art{
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+  }
+
+  .card-art svg{
+    width:100%;
+    height:auto;
+    filter:drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+  }
+
+  .card h4{
+    font-size:16px;
+    margin-bottom:4px;
+  }
+
+  .card .desc{
+    font-size:12px;
+    color:var(--dim);
+    margin-bottom:16px;
+    line-height:1.5;
+  }
+
+  .card-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:auto;
+    gap:10px;
+  }
+
+  .price{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:15px;
+  }
+
   .add-btn{
-    display:flex; align-items:center; gap:6px; padding:10px 14px; border-radius:999px;
-    background:transparent; border:1px solid var(--line); color:var(--white); font-size:12px; font-weight:700;
-    cursor:pointer; transition:all .2s; white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:10px 14px;
+    border-radius:999px;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--white);
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .2s;
+    white-space:nowrap;
   }
-  .add-btn:hover{border-color:var(--nv-green); background:rgba(118,185,0,0.08);}
-  .add-btn.added{background:var(--nv-green); border-color:var(--nv-green); color:#08240a;}
-  .add-btn:disabled{cursor:default; opacity:0.85;}
+
+  .add-btn:hover{
+    border-color:var(--nv-green);
+    background:rgba(118,185,0,0.08);
+  }
+
+  .add-btn.added{
+    background:var(--nv-green);
+    border-color:var(--nv-green);
+    color:#08240a;
+  }
+
+  .add-btn:disabled{
+    cursor:default;
+    opacity:0.85;
+  }
+
   .empty-state{
-    grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--dim); font-size:14px;
-    border:1px dashed var(--line); border-radius:var(--radius); display:none;
+    grid-column:1/-1;
+    text-align:center;
+    padding:60px 20px;
+    color:var(--dim);
+    font-size:14px;
+    border:1px dashed var(--line);
+    border-radius:var(--radius);
+    display:none;
   }
-  .empty-state.show{display:block;}
+
+  .empty-state.show{
+    display:block;
+  }
+
   .empty-state button{
-    margin-top:14px; background:none; border:1px solid var(--line); color:var(--white);
-    padding:8px 16px; border-radius:999px; cursor:pointer; font-size:12px; font-weight:600;
+    margin-top:14px;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--white);
+    padding:8px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
   }
-  .empty-state button:hover{border-color:var(--nv-green);}
 
-  /* ---------- PERFORMANCE ---------- */
+  .empty-state button:hover{
+    border-color:var(--nv-green);
+  }
+
+  /* =========================
+     PERFORMANCE
+  ========================= */
+
   .perf{
-    background:var(--near-black); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    padding:100px 32px; text-align:center; scroll-margin-top:64px;
+    background:var(--near-black);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:100px 32px;
+    text-align:center;
+    scroll-margin-top:64px;
   }
-  .perf h2{font-size:clamp(30px,5vw,52px); max-width:760px; margin:0 auto 16px;}
-  .perf p.lead{color:var(--dim); max-width:520px; margin:0 auto 60px; font-size:15px;}
-  .gauge-wrap{display:flex; justify-content:center; gap:60px; flex-wrap:wrap;}
-  .gauge{width:210px;}
-  .gauge svg{width:100%;}
-  .gauge .g-label{font-size:12px; color:var(--dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:10px;}
-  .gauge .g-num{font-family:'Space Mono',monospace; font-size:26px; font-weight:700; color:var(--nv-glow);}
 
-  /* ---------- NEWSLETTER (ERROR PREVENTION + FEEDBACK) ---------- */
+  .perf h2{
+    font-size:clamp(30px,5vw,52px);
+    max-width:760px;
+    margin:0 auto 16px;
+  }
+
+  .perf p.lead{
+    color:var(--dim);
+    max-width:520px;
+    margin:0 auto 60px;
+    font-size:15px;
+  }
+
+  .gauge-wrap{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    flex-wrap:wrap;
+  }
+
+  .gauge{
+    width:210px;
+  }
+
+  .gauge svg{
+    width:100%;
+  }
+
+  .gauge .g-label{
+    font-size:12px;
+    color:var(--dim);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:10px;
+  }
+
+  .gauge .g-num{
+    font-family:'Space Mono',monospace;
+    font-size:26px;
+    font-weight:700;
+    color:var(--nv-glow);
+  }
+
+  /* =========================
+     NEWSLETTER
+  ========================= */
+
   .newsletter{
-    padding:90px 32px; display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;
+    padding:90px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
     background:linear-gradient(120deg, rgba(118,185,0,0.09), transparent 60%);
   }
-  .newsletter h2{font-size:clamp(28px,4vw,42px); max-width:480px; line-height:1.05;}
-  .nl-form{max-width:420px; width:100%;}
-  .form-row{display:flex; gap:0; border-bottom:2px solid var(--white); padding-bottom:10px; transition:border-color .2s;}
-  .form-row.error{border-color:var(--error);}
-  .form-row.success{border-color:var(--nv-green);}
+
+  .newsletter h2{
+    font-size:clamp(28px,4vw,42px);
+    max-width:480px;
+    line-height:1.05;
+  }
+
+  .nl-form{
+    max-width:420px;
+    width:100%;
+  }
+
+  .form-row{
+    display:flex;
+    gap:0;
+    border-bottom:2px solid var(--white);
+    padding-bottom:10px;
+    transition:border-color .2s;
+  }
+
+  .form-row.error{
+    border-color:var(--error);
+  }
+
+  .form-row.success{
+    border-color:var(--nv-green);
+  }
+
   .form-row input{
-    background:transparent; border:none; outline:none; color:var(--white); font-size:15px; flex:1; font-family:'Inter',sans-serif;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--white);
+    font-size:15px;
+    flex:1;
+    font-family:'Inter',sans-serif;
   }
-  .form-row input::placeholder{color:var(--dim);}
-  .form-row button{background:none;border:none;cursor:pointer; display:flex; align-items:center;}
-  .form-msg{font-size:12px; margin-top:8px; min-height:16px;}
-  .form-msg.error{color:var(--error);}
-  .form-msg.success{color:var(--nv-glow);}
 
-  /* ---------- FOOTER ---------- */
-  footer{padding:70px 32px 30px; border-top:1px solid var(--line);}
-  .foot-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:30px; margin-bottom:60px;}
-  @media(max-width:900px){ .foot-grid{grid-template-columns:repeat(2,1fr);} }
-  .foot-col h5{font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--dim); margin-bottom:18px;}
-  .foot-col ul li{margin-bottom:11px; font-size:13px; color:var(--off);}
-  .foot-col ul li a:hover{color:var(--nv-glow);}
+  .form-row input::placeholder{
+    color:var(--dim);
+  }
+
+  .form-row button{
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+  }
+
+  .form-msg{
+    font-size:12px;
+    margin-top:8px;
+    min-height:16px;
+  }
+
+  .form-msg.error{
+    color:var(--error);
+  }
+
+  .form-msg.success{
+    color:var(--nv-glow);
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  footer{
+    padding:70px 32px 30px;
+    border-top:1px solid var(--line);
+  }
+
+  .foot-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:30px;
+    margin-bottom:60px;
+  }
+
+  @media(max-width:900px){
+    .foot-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  .foot-col h5{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--dim);
+    margin-bottom:18px;
+  }
+
+  .foot-col ul li{
+    margin-bottom:11px;
+    font-size:13px;
+    color:var(--off);
+  }
+
+  .foot-col ul li a:hover{
+    color:var(--nv-glow);
+  }
+
   .foot-bottom{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
-    padding-top:26px; border-top:1px solid var(--line); font-size:12px; color:var(--dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--dim);
   }
-  .foot-bottom .legal{display:flex; gap:20px; flex-wrap:wrap;}
 
-  /* ---------- BACK TO TOP (CLEAR NAVIGATION) ---------- */
+  .foot-bottom .legal{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+
+  /* =========================
+     BACK TO TOP
+  ========================= */
+
   .to-top{
-    position:fixed; bottom:24px; right:24px; width:44px; height:44px; border-radius:50%;
-    background:var(--panel); border:1px solid var(--line); color:var(--white); cursor:pointer;
-    display:flex; align-items:center; justify-content:center; z-index:90;
-    opacity:0; pointer-events:none; transform:translateY(10px); transition:all .25s;
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--white);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:90;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(10px);
+    transition:all .25s;
   }
-  .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
-  .to-top:hover{border-color:var(--nv-green);}
 
-  /* ---------- TOAST (FEEDBACK) ---------- */
-  .toast-stack{
-    position:fixed; bottom:24px; left:24px; display:flex; flex-direction:column; gap:10px; z-index:200;
+  .to-top.show{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
+
+  .to-top:hover{
+    border-color:var(--nv-green);
+  }
+
+  /* =========================
+     TOAST
+  ========================= */
+
+  .toast-stack{
+    position:fixed;
+    bottom:24px;
+    left:24px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:600;
+  }
+
   .toast{
-    background:var(--panel); border:1px solid var(--nv-green); border-radius:10px; padding:12px 16px;
-    font-size:13px; display:flex; align-items:center; gap:10px; min-width:220px;
+    background:var(--panel);
+    border:1px solid var(--nv-green);
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:220px;
     box-shadow:0 10px 30px rgba(0,0,0,0.5);
     animation:toast-in .25s ease-out;
   }
-  .toast.error{border-color:var(--error);}
-  @keyframes toast-in{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
-  .toast-undo{background:none; border:none; color:var(--nv-glow); font-weight:700; cursor:pointer; font-size:12px; text-decoration:underline; margin-left:auto;}
 
-  ::selection{background:var(--nv-green); color:#08240a;}
+  .toast.error{
+    border-color:var(--error);
+  }
+
+  @keyframes toast-in{
+    from{
+      opacity:0;
+      transform:translateY(8px);
+    }
+
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+
+  .toast-undo{
+    background:none;
+    border:none;
+    color:var(--nv-glow);
+    font-weight:700;
+    cursor:pointer;
+    font-size:12px;
+    text-decoration:underline;
+    margin-left:auto;
+  }
+
+  /* =========================
+     CHECKOUT MODAL
+  ========================= */
+
+  .checkout-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.78);
+    backdrop-filter:blur(8px);
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+
+  .checkout-overlay.open{
+    display:flex;
+  }
+
+  .checkout-modal{
+    width:min(760px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.7);
+    padding:28px;
+    animation:checkout-in .25s ease-out;
+  }
+
+  @keyframes checkout-in{
+    from{
+      opacity:0;
+      transform:translateY(20px) scale(.98);
+    }
+
+    to{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+  }
+
+  .checkout-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:28px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .checkout-header h2{
+    font-size:28px;
+  }
+
+  .checkout-header p{
+    color:var(--dim);
+    font-size:12px;
+    margin-top:5px;
+  }
+
+  .checkout-close{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--white);
+    cursor:pointer;
+    font-size:20px;
+    transition:.2s;
+  }
+
+  .checkout-close:hover{
+    border-color:var(--nv-green);
+    color:var(--nv-glow);
+  }
+
+  .checkout-section{
+    margin-bottom:25px;
+  }
+
+  .checkout-section h3,
+  .checkout-summary h3{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--nv-glow);
+    margin-bottom:14px;
+  }
+
+  .checkout-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .checkout-field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+  }
+
+  .checkout-field.full{
+    grid-column:1/-1;
+  }
+
+  .checkout-field label{
+    font-size:11px;
+    color:var(--dim);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+
+  .checkout-field input,
+  .checkout-field select{
+    width:100%;
+    padding:12px 13px;
+    border-radius:9px;
+    border:1px solid var(--line);
+    background:var(--near-black);
+    color:var(--white);
+    outline:none;
+    font-family:'Inter',sans-serif;
+  }
+
+  .checkout-field input:focus,
+  .checkout-field select:focus{
+    border-color:var(--nv-green);
+  }
+
+  .checkout-field input::placeholder{
+    color:#5f6259;
+  }
+
+  .payment-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  .payment-option{
+    position:relative;
+  }
+
+  .payment-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .payment-option label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    min-height:60px;
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--off);
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+  }
+
+  .payment-option input:checked + label{
+    border-color:var(--nv-green);
+    background:rgba(118,185,0,.12);
+    color:var(--white);
+    box-shadow:0 0 0 1px rgba(118,185,0,.2);
+  }
+
+  .payment-option label:hover{
+    border-color:var(--nv-green);
+  }
+
+  .checkout-summary{
+    background:var(--near-black);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:20px;
+  }
+
+  .checkout-summary-item{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+    font-size:12px;
+  }
+
+  .checkout-summary-item:last-child{
+    border-bottom:none;
+  }
+
+  .checkout-summary-item span:first-child{
+    color:var(--off);
+  }
+
+  .checkout-summary-item span:last-child{
+    font-family:'Space Mono',monospace;
+    white-space:nowrap;
+  }
+
+  .checkout-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:14px;
+    margin-top:8px;
+    border-top:1px solid var(--line);
+  }
+
+  .checkout-total span:first-child{
+    font-size:13px;
+    color:var(--dim);
+    text-transform:uppercase;
+  }
+
+  .checkout-total span:last-child{
+    font-family:'Space Mono',monospace;
+    font-size:20px;
+    font-weight:700;
+    color:var(--nv-glow);
+  }
+
+  .checkout-error{
+    color:var(--error);
+    font-size:12px;
+    margin-top:8px;
+    margin-bottom:12px;
+    display:none;
+  }
+
+  .checkout-error.show{
+    display:block;
+  }
+
+  .checkout-submit{
+    width:100%;
+    justify-content:center;
+    border:none;
+    font-size:13px;
+  }
+
+  .order-success{
+    text-align:center;
+    padding:20px 0;
+  }
+
+  .success-icon{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(118,185,0,.15);
+    border:1px solid var(--nv-green);
+    color:var(--nv-glow);
+    font-size:30px;
+    margin:0 auto 20px;
+  }
+
+  .order-success h2{
+    font-size:25px;
+    margin-bottom:8px;
+  }
+
+  .order-success p{
+    color:var(--dim);
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  @media(max-width:600px){
+    .checkout-modal{
+      padding:20px;
+    }
+
+    .checkout-grid{
+      grid-template-columns:1fr;
+    }
+
+    .checkout-field.full{
+      grid-column:auto;
+    }
+
+    .payment-options{
+      grid-template-columns:1fr;
+    }
+
+    .cart-panel{
+      width:min(330px,calc(100vw - 30px));
+    }
+
+    .toast-stack{
+      left:15px;
+      right:15px;
+      bottom:15px;
+    }
+
+    .toast{
+      min-width:0;
+      width:100%;
+    }
+  }
+
+  ::selection{
+    background:var(--nv-green);
+    color:#08240a;
+  }
 </style>
 </head>
+
 <body>
 
 <a class="skip-link" href="#grid">Skip to products</a>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-  <div class="logo"><span class="dot"></span>NVIDIA</div>
+
+  <div class="logo">
+    <span class="dot"></span>
+    NVIDIA
+  </div>
+
   <nav class="primary" id="primaryNav">
     <a href="#grid" data-section="grid">GeForce RTX</a>
     <a href="#tiles" data-section="tiles">Shop By Build</a>
     <a href="#perf" data-section="perf">Performance</a>
     <a href="#support" data-section="support">Support</a>
   </nav>
+
   <div class="nav-right">
-    <button class="icon-btn" id="searchToggle" aria-expanded="false" aria-controls="searchPanel" aria-label="Search products">
-      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+
+    <!-- SEARCH -->
+
+    <button
+      class="icon-btn"
+      id="searchToggle"
+      aria-expanded="false"
+      aria-controls="searchPanel"
+      aria-label="Search products"
+    >
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <path
+          d="M21 21l-4.35-4.35"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
     </button>
+
+    <!-- CART -->
+
     <div style="position:relative;">
-      <button class="icon-btn" id="cartToggle" aria-expanded="false" aria-controls="cartPanel" aria-label="View cart, 0 items">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1" fill="currentColor"/><circle cx="18" cy="21" r="1" fill="currentColor"/></svg>
+
+      <button
+        class="icon-btn"
+        id="cartToggle"
+        aria-expanded="false"
+        aria-controls="cartPanel"
+        aria-label="View cart, 0 items"
+      >
+        <svg viewBox="0 0 24 24" fill="none">
+          <path
+            d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 7H6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="9" cy="21" r="1" fill="currentColor"/>
+          <circle cx="18" cy="21" r="1" fill="currentColor"/>
+        </svg>
+
         <span class="cart-count" id="cartCount">0</span>
       </button>
-      <div class="cart-panel" id="cartPanel" role="dialog" aria-label="Shopping cart">
+
+      <div
+        class="cart-panel"
+        id="cartPanel"
+        role="dialog"
+        aria-label="Shopping cart"
+      >
+
         <h4>Your Cart</h4>
-        <div id="cartItems"><p class="cart-empty">Your cart is empty. Add a GPU to get started.</p></div>
+
+        <div id="cartItems">
+          <p class="cart-empty">
+            Your cart is empty. Add a GPU to get started.
+          </p>
+        </div>
+
+        <button
+          class="btn btn-solid checkout-cart-btn"
+          id="checkoutButton"
+          style="display:none;"
+        >
+          Proceed to Checkout
+        </button>
+
       </div>
+
     </div>
+
+    <!-- SEARCH PANEL -->
+
     <div class="search-panel" id="searchPanel">
-      <input type="text" id="searchInput" placeholder="Search GPUs, e.g. 5080" aria-label="Search products">
-      <div class="search-hint">Filters the GeForce RTX list below as you type.</div>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search GPUs, e.g. 5080"
+        aria-label="Search products"
+      >
+
+      <div class="search-hint">
+        Filters the GeForce RTX list below as you type.
+      </div>
+
     </div>
+
   </div>
+
 </header>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
-  <svg class="hero-gpu" viewBox="0 0 600 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="40" y="40" width="520" height="220" rx="18" fill="#15170f" stroke="#2a2d20" stroke-width="2"/>
-    <rect x="40" y="40" width="520" height="220" rx="18" fill="url(#g1)" opacity="0.5"/>
+
+  <svg
+    class="hero-gpu"
+    viewBox="0 0 600 340"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+
+    <rect
+      x="40"
+      y="40"
+      width="520"
+      height="220"
+      rx="18"
+      fill="#15170f"
+      stroke="#2a2d20"
+      stroke-width="2"
+    />
+
+    <rect
+      x="40"
+      y="40"
+      width="520"
+      height="220"
+      rx="18"
+      fill="url(#g1)"
+      opacity="0.5"
+    />
+
     <defs>
-      <linearGradient id="g1" x1="0" y1="0" x2="600" y2="340" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#76b900" stop-opacity="0.35"/>
-        <stop offset="1" stop-color="#76b900" stop-opacity="0"/>
+      <linearGradient
+        id="g1"
+        x1="0"
+        y1="0"
+        x2="600"
+        y2="340"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop
+          stop-color="#76b900"
+          stop-opacity="0.35"
+        />
+        <stop
+          offset="1"
+          stop-color="#76b900"
+          stop-opacity="0"
+        />
       </linearGradient>
     </defs>
-    <g class="fan" style="transform-box:fill-box; transform-origin:center;">
-      <circle cx="160" cy="150" r="72" fill="#0e0f0b" stroke="#76b900" stroke-width="2"/>
-      <g stroke="#76b900" stroke-width="6" stroke-linecap="round">
-        <path d="M160 150 L160 92"/><path d="M160 150 L206 122"/><path d="M160 150 L206 178"/>
-        <path d="M160 150 L160 208"/><path d="M160 150 L114 178"/><path d="M160 150 L114 122"/>
+
+    <g
+      class="fan"
+      style="transform-box:fill-box; transform-origin:center;"
+    >
+
+      <circle
+        cx="160"
+        cy="150"
+        r="72"
+        fill="#0e0f0b"
+        stroke="#76b900"
+        stroke-width="2"
+      />
+
+      <g
+        stroke="#76b900"
+        stroke-width="6"
+        stroke-linecap="round"
+      >
+        <path d="M160 150 L160 92"/>
+        <path d="M160 150 L206 122"/>
+        <path d="M160 150 L206 178"/>
+        <path d="M160 150 L160 208"/>
+        <path d="M160 150 L114 178"/>
+        <path d="M160 150 L114 122"/>
       </g>
-      <circle cx="160" cy="150" r="14" fill="#76b900"/>
+
+      <circle
+        cx="160"
+        cy="150"
+        r="14"
+        fill="#76b900"
+      />
+
     </g>
-    <g class="fan slow" style="transform-box:fill-box; transform-origin:center;">
-      <circle cx="330" cy="150" r="72" fill="#0e0f0b" stroke="#76b900" stroke-width="2"/>
-      <g stroke="#76b900" stroke-width="6" stroke-linecap="round">
-        <path d="M330 150 L330 92"/><path d="M330 150 L376 122"/><path d="M330 150 L376 178"/>
-        <path d="M330 150 L330 208"/><path d="M330 150 L284 178"/><path d="M330 150 L284 122"/>
+
+    <g
+      class="fan slow"
+      style="transform-box:fill-box; transform-origin:center;"
+    >
+
+      <circle
+        cx="330"
+        cy="150"
+        r="72"
+        fill="#0e0f0b"
+        stroke="#76b900"
+        stroke-width="2"
+      />
+
+      <g
+        stroke="#76b900"
+        stroke-width="6"
+        stroke-linecap="round"
+      >
+        <path d="M330 150 L330 92"/>
+        <path d="M330 150 L376 122"/>
+        <path d="M330 150 L376 178"/>
+        <path d="M330 150 L330 208"/>
+        <path d="M330 150 L284 178"/>
+        <path d="M330 150 L284 122"/>
       </g>
-      <circle cx="330" cy="150" r="14" fill="#76b900"/>
+
+      <circle
+        cx="330"
+        cy="150"
+        r="14"
+        fill="#76b900"
+      />
+
     </g>
-    <rect x="430" y="70" width="100" height="160" rx="6" fill="#0e0f0b" stroke="#2a2d20" stroke-width="2"/>
-    <g stroke="#3a3d2e" stroke-width="2">
-      <line x1="444" y1="85" x2="444" y2="215"/><line x1="458" y1="85" x2="458" y2="215"/>
-      <line x1="472" y1="85" x2="472" y2="215"/><line x1="486" y1="85" x2="486" y2="215"/>
-      <line x1="500" y1="85" x2="500" y2="215"/><line x1="514" y1="85" x2="514" y2="215"/>
+
+    <rect
+      x="430"
+      y="70"
+      width="100"
+      height="160"
+      rx="6"
+      fill="#0e0f0b"
+      stroke="#2a2d20"
+      stroke-width="2"
+    />
+
+    <g
+      stroke="#3a3d2e"
+      stroke-width="2"
+    >
+      <line x1="444" y1="85" x2="444" y2="215"/>
+      <line x1="458" y1="85" x2="458" y2="215"/>
+      <line x1="472" y1="85" x2="472" y2="215"/>
+      <line x1="486" y1="85" x2="486" y2="215"/>
+      <line x1="500" y1="85" x2="500" y2="215"/>
+      <line x1="514" y1="85" x2="514" y2="215"/>
     </g>
-    <rect x="60" y="270" width="200" height="16" rx="4" fill="#15170f" stroke="#2a2d20"/>
-    <rect x="60" y="270" width="120" height="16" rx="4" fill="#76b900"/>
+
+    <rect
+      x="60"
+      y="270"
+      width="200"
+      height="16"
+      rx="4"
+      fill="#15170f"
+      stroke="#2a2d20"
+    />
+
+    <rect
+      x="60"
+      y="270"
+      width="120"
+      height="16"
+      rx="4"
+      fill="#76b900"
+    />
+
   </svg>
 
-  <div class="hero-eyebrow">GEFORCE RTX 50 SERIES · NOW SHIPPING</div>
-  <h1 class="hero-title display">Just Plug<br>It In.</h1>
-  <p class="hero-sub">Neural rendering. Real-time ray tracing. Frame rates that don't apologize for themselves. Built for the builders, benchmarkers, and the ones who never lower a setting.</p>
+  <div class="hero-eyebrow">
+    GEFORCE RTX 50 SERIES · NOW SHIPPING
+  </div>
+
+  <h1 class="hero-title display">
+    Just Plug<br>It In.
+  </h1>
+
+  <p class="hero-sub">
+    Neural rendering. Real-time ray tracing. Frame rates that don't
+    apologize for themselves. Built for the builders, benchmarkers,
+    and the ones who never lower a setting.
+  </p>
+
   <div class="cta-row">
-    <a class="btn btn-solid" href="#grid">Shop RTX 50 Series</a>
-    <a class="btn btn-outline" href="#perf">Compare GPUs</a>
+
+    <a class="btn btn-solid" href="#grid">
+      Shop RTX 50 Series
+    </a>
+
+    <a class="btn btn-outline" href="#perf">
+      Compare GPUs
+    </a>
+
   </div>
 
   <div class="hero-stats">
-    <div class="stat"><div class="num mono" id="fpsCounter">0</div><div class="lbl">Avg. FPS, 4K Path Tracing</div></div>
-    <div class="stat"><div class="num mono">32GB</div><div class="lbl">GDDR7 On Flagship</div></div>
-    <div class="stat"><div class="num mono">575W</div><div class="lbl">Total Graphics Power</div></div>
+
+    <div class="stat">
+      <div class="num mono" id="fpsCounter">0</div>
+      <div class="lbl">
+        Avg. FPS, 4K Path Tracing
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="num mono">32GB</div>
+      <div class="lbl">
+        GDDR7 On Flagship
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="num mono">575W</div>
+      <div class="lbl">
+        Total Graphics Power
+      </div>
+    </div>
+
   </div>
+
 </section>
+
+
+<!-- =========================
+     SHOP BY BUILD
+========================= -->
 
 <section class="section" id="tiles">
+
   <div class="section-head">
-    <h2 class="display">Shop By Build</h2>
-    <p>Whatever you're building toward — a 4K rig, a silent SFF box, a render farm — there's a card sized for it.</p>
+
+    <h2 class="display">
+      Shop By Build
+    </h2>
+
+    <p>
+      Whatever you're building toward — a 4K rig, a silent SFF box,
+      a render farm — there's a card sized for it.
+    </p>
+
   </div>
+
   <div class="tiles">
+
     <button class="tile" data-jump="grid">
-      <span class="css-icon icon-display" aria-hidden="true"><span class="screen"></span><span class="neck"></span><span class="base"></span></span>
-      <h3 class="display" style="font-size:19px;">4K Gaming</h3>
-      <span>Max settings, zero compromise</span>
-    </button>
-    <button class="tile" data-jump="grid">
-      <span class="css-icon icon-creativity" aria-hidden="true">
-        <span class="ring"></span>
-        <span class="spoke s1"></span><span class="spoke s2"></span><span class="spoke s3"></span>
+
+      <span
+        class="css-icon icon-display"
+        aria-hidden="true"
+      >
+        <span class="screen"></span>
+        <span class="neck"></span>
+        <span class="base"></span>
       </span>
-      <h3 class="display" style="font-size:19px;">Creator Studio</h3>
-      <span>Render, encode, export faster</span>
+
+      <h3
+        class="display"
+        style="font-size:19px;"
+      >
+        4K Gaming
+      </h3>
+
+      <span>
+        Max settings, zero compromise
+      </span>
+
     </button>
+
+
     <button class="tile" data-jump="grid">
-      <span class="css-icon icon-ai-stack" aria-hidden="true">
-        <span class="layer l1"></span><span class="layer l2"></span>
+
+      <span
+        class="css-icon icon-creativity"
+        aria-hidden="true"
+      >
+        <span class="ring"></span>
+        <span class="spoke s1"></span>
+        <span class="spoke s2"></span>
+        <span class="spoke s3"></span>
+      </span>
+
+      <h3
+        class="display"
+        style="font-size:19px;"
+      >
+        Creator Studio
+      </h3>
+
+      <span>
+        Render, encode, export faster
+      </span>
+
+    </button>
+
+
+    <button class="tile" data-jump="grid">
+
+      <span
+        class="css-icon icon-ai-stack"
+        aria-hidden="true"
+      >
+        <span class="layer l1"></span>
+        <span class="layer l2"></span>
         <span class="badge"></span>
       </span>
-      <h3 class="display" style="font-size:19px;">AI & ML Dev</h3>
-      <span>Local inference, real VRAM</span>
-    </button>
-    <button class="tile" data-jump="grid">
-      <span class="css-icon icon-compact" aria-hidden="true">
-        <span class="shaft"></span><span class="head"></span><span class="tray"></span>
+
+      <h3
+        class="display"
+        style="font-size:19px;"
+      >
+        AI & ML Dev
+      </h3>
+
+      <span>
+        Local inference, real VRAM
       </span>
-      <h3 class="display" style="font-size:19px;">Easy Setup</h3>
-      <span>Plug in, Boot, And Enjoy</span>
+
     </button>
+
+
+    <button class="tile" data-jump="grid">
+
+      <span
+        class="css-icon icon-compact"
+        aria-hidden="true"
+      >
+        <span class="shaft"></span>
+        <span class="head"></span>
+        <span class="tray"></span>
+      </span>
+
+      <h3
+        class="display"
+        style="font-size:19px;"
+      >
+        Small Form Factor
+      </h3>
+
+      <span>
+        Full power, half the case
+      </span>
+
+    </button>
+
   </div>
+
 </section>
 
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
 <section class="section" id="grid">
+
   <div class="section-head">
-    <h2 class="display">GeForce RTX 50 Series</h2>
-    <p>Founders Edition pricing shown. Availability varies by region and board partner.</p>
+
+    <h2 class="display">
+      GeForce RTX 50 Series
+    </h2>
+
+    <p>
+      Founders Edition pricing shown. Availability varies by region
+      and board partner.
+    </p>
+
   </div>
+
   <div class="filter-bar">
-    <div class="filter-row" role="group" aria-label="Filter by model">
-      <button class="chip active" data-filter="all">All</button>
-      <button class="chip" data-filter="50">RTX 50 Series</button>
-      <button class="chip" data-filter="40">RTX 40 Series</button>
-      <button class="chip" data-filter="30">RTX 30 Series</button>
+
+    <div
+      class="filter-row"
+      role="group"
+      aria-label="Filter by model"
+    >
+
+      <button
+        class="chip active"
+        data-filter="all"
+      >
+        All
+      </button>
+
+      <button
+        class="chip"
+        data-filter="50"
+      >
+        RTX 50 Series
+      </button>
+
+      <button
+        class="chip"
+        data-filter="40"
+      >
+        RTX 40 Series
+      </button>
+
+      <button
+        class="chip"
+        data-filter="30"
+      >
+        RTX 30 Series
+      </button>
+
     </div>
-    <span class="result-count" id="resultCount" aria-live="polite">Showing 12 of 12</span>
+
+    <span
+      class="result-count"
+      id="resultCount"
+      aria-live="polite"
+    >
+      Showing 12 of 12
+    </span>
+
   </div>
+
 
   <div class="grid" id="productGrid">
 
-    <div class="card" data-series="50" data-name="GeForce RTX 5090">
-      <div class="card-badge">New</div>
+
+    <!-- RTX 5090 -->
+
+    <div
+      class="card"
+      data-series="50"
+      data-name="GeForce RTX 5090"
+    >
+
+      <div class="card-badge">
+        New
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#76b900" stroke-width="1.5"/><circle cx="60" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#76b900"/><circle cx="140" cy="50" r="6" fill="#76b900"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#76b900"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#76b900"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#76b900"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 5090</h4>
-      <p class="desc">32GB GDDR7 · Flagship neural rendering for 4K path tracing.</p>
+
+      <h4>
+        GeForce RTX 5090
+      </h4>
+
+      <p class="desc">
+        32GB GDDR7 · Flagship neural rendering for 4K path tracing.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱1</span>
-        <button class="add-btn" data-name="GeForce RTX 5090" data-price="₱126,995">Add to Cart</button>
+
+        <span class="price">
+          ₱126,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 5090"
+          data-price="₱126,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="50" data-name="GeForce RTX 5080">
-      <div class="card-badge">New</div>
+
+    <!-- RTX 5080 -->
+
+    <div
+      class="card"
+      data-series="50"
+      data-name="GeForce RTX 5080"
+    >
+
+      <div class="card-badge">
+        New
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#76b900" stroke-width="1.5"/><circle cx="60" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#76b900"/><circle cx="140" cy="50" r="6" fill="#76b900"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#76b900"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#76b900"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#76b900"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 5080</h4>
-      <p class="desc">16GB GDDR7 · High-refresh 4K, built for competitive clarity.</p>
+
+      <h4>
+        GeForce RTX 5080
+      </h4>
+
+      <p class="desc">
+        16GB GDDR7 · High-refresh 4K, built for competitive clarity.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱62,995</span>
-        <button class="add-btn" data-name="GeForce RTX 5080" data-price="₱62,995">Add to Cart</button>
+
+        <span class="price">
+          ₱62,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 5080"
+          data-price="₱62,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="50" data-name="GeForce RTX 5070 Ti">
-      <div class="card-badge ghost">Best Seller</div>
+
+    <!-- RTX 5070 Ti -->
+
+    <div
+      class="card"
+      data-series="50"
+      data-name="GeForce RTX 5070 Ti"
+    >
+
+      <div class="card-badge ghost">
+        Best Seller
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="26" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="26" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="5" fill="#76b900"/><circle cx="140" cy="50" r="5" fill="#76b900"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="26"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="26"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="5"
+            fill="#76b900"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="5"
+            fill="#76b900"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 5070 Ti</h4>
-      <p class="desc">16GB GDDR7 · The sweet spot for 1440p and entry 4K.</p>
+
+      <h4>
+        GeForce RTX 5070 Ti
+      </h4>
+
+      <p class="desc">
+        16GB GDDR7 · The sweet spot for 1440p and entry 4K.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱44,995</span>
-        <button class="add-btn" data-name="GeForce RTX 5070 Ti" data-price="₱44,995">Add to Cart</button>
+
+        <span class="price">
+          ₱44,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 5070 Ti"
+          data-price="₱44,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="50" data-name="GeForce RTX 5070">
-      <div class="card-badge ghost">Value Pick</div>
+
+    <!-- RTX 5070 -->
+
+    <div
+      class="card"
+      data-series="50"
+      data-name="GeForce RTX 5070"
+    >
+
+      <div class="card-badge ghost">
+        Value Pick
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="80" cy="50" r="24" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="150" cy="50" r="24" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="80" cy="50" r="5" fill="#76b900"/><circle cx="150" cy="50" r="5" fill="#76b900"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="24"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="24"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="5"
+            fill="#76b900"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="5"
+            fill="#76b900"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 5070</h4>
-      <p class="desc">12GB GDDR7 · Serious 1440p performance, entry price.</p>
+
+      <h4>
+        GeForce RTX 5070
+      </h4>
+
+      <p class="desc">
+        12GB GDDR7 · Serious 1440p performance, entry price.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱34,995</span>
-        <button class="add-btn" data-name="GeForce RTX 5070" data-price="₱34,995">Add to Cart</button>
+
+        <span class="price">
+          ₱34,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 5070"
+          data-price="₱34,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="40" data-name="GeForce RTX 4090">
-      <div class="card-badge ghost">Previous Gen</div>
+
+    <!-- RTX 4090 -->
+
+    <div
+      class="card"
+      data-series="40"
+      data-name="GeForce RTX 4090"
+    >
+
+      <div class="card-badge ghost">
+        Previous Gen
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#5c8a00"/><circle cx="140" cy="50" r="6" fill="#5c8a00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#5c8a00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#5c8a00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 4090</h4>
-      <p class="desc">24GB GDDR6X · Last-gen flagship, still a 4K powerhouse.</p>
+
+      <h4>
+        GeForce RTX 4090
+      </h4>
+
+      <p class="desc">
+        24GB GDDR6X · Last-gen flagship, still a 4K powerhouse.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱89,995</span>
-        <button class="add-btn" data-name="GeForce RTX 4090" data-price="₱89,995">Add to Cart</button>
+
+        <span class="price">
+          ₱89,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 4090"
+          data-price="₱89,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="40" data-name="GeForce RTX 4080 Super">
-      <div class="card-badge ghost">Previous Gen</div>
+
+    <!-- RTX 4080 Super -->
+
+    <div
+      class="card"
+      data-series="40"
+      data-name="GeForce RTX 4080 Super"
+    >
+
+      <div class="card-badge ghost">
+        Previous Gen
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="30" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#5c8a00"/><circle cx="140" cy="50" r="6" fill="#5c8a00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#5c8a00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#5c8a00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 4080 Super</h4>
-      <p class="desc">16GB GDDR6X · Strong 4K, refreshed clocks over the original 4080.</p>
+
+      <h4>
+        GeForce RTX 4080 Super
+      </h4>
+
+      <p class="desc">
+        16GB GDDR6X · Strong 4K, refreshed clocks over the original 4080.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱52,995</span>
-        <button class="add-btn" data-name="GeForce RTX 4080 Super" data-price="₱52,995">Add to Cart</button>
+
+        <span class="price">
+          ₱52,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 4080 Super"
+          data-price="₱52,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="40" data-name="GeForce RTX 4070 Ti Super">
-      <div class="card-badge ghost">Previous Gen</div>
+
+    <!-- RTX 4070 Ti Super -->
+
+    <div
+      class="card"
+      data-series="40"
+      data-name="GeForce RTX 4070 Ti Super"
+    >
+
+      <div class="card-badge ghost">
+        Previous Gen
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="26" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="140" cy="50" r="26" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="60" cy="50" r="5" fill="#5c8a00"/><circle cx="140" cy="50" r="5" fill="#5c8a00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="26"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="26"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="5"
+            fill="#5c8a00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="5"
+            fill="#5c8a00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 4070 Ti Super</h4>
-      <p class="desc">16GB GDDR6X · 1440p and light 4K without flagship pricing.</p>
+
+      <h4>
+        GeForce RTX 4070 Ti Super
+      </h4>
+
+      <p class="desc">
+        16GB GDDR6X · 1440p and light 4K without flagship pricing.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱38,995</span>
-        <button class="add-btn" data-name="GeForce RTX 4070 Ti Super" data-price="₱38,995">Add to Cart</button>
+
+        <span class="price">
+          ₱38,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 4070 Ti Super"
+          data-price="₱38,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="40" data-name="GeForce RTX 4060">
-      <div class="card-badge ghost">Previous Gen</div>
+
+    <!-- RTX 4060 -->
+
+    <div
+      class="card"
+      data-series="40"
+      data-name="GeForce RTX 4060"
+    >
+
+      <div class="card-badge ghost">
+        Previous Gen
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="80" cy="50" r="22" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="150" cy="50" r="22" fill="none" stroke="#3a3d2e" stroke-width="1.5"/><circle cx="80" cy="50" r="5" fill="#5c8a00"/><circle cx="150" cy="50" r="5" fill="#5c8a00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="22"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="22"
+            fill="none"
+            stroke="#3a3d2e"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="5"
+            fill="#5c8a00"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="5"
+            fill="#5c8a00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 4060</h4>
-      <p class="desc">8GB GDDR6 · Efficient 1080p, an easy first upgrade.</p>
+
+      <h4>
+        GeForce RTX 4060
+      </h4>
+
+      <p class="desc">
+        8GB GDDR6 · Efficient 1080p, an easy first upgrade.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱16,995</span>
-        <button class="add-btn" data-name="GeForce RTX 4060" data-price="₱16,995">Add to Cart</button>
+
+        <span class="price">
+          ₱16,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 4060"
+          data-price="₱16,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="30" data-name="GeForce RTX 3090 Ti">
-      <div class="card-badge ghost">Legacy</div>
+
+    <!-- RTX 3090 Ti -->
+
+    <div
+      class="card"
+      data-series="30"
+      data-name="GeForce RTX 3090 Ti"
+    >
+
+      <div class="card-badge ghost">
+        Legacy
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="30" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="140" cy="50" r="30" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#4a6e00"/><circle cx="140" cy="50" r="6" fill="#4a6e00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="30"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#4a6e00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#4a6e00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 3090 Ti</h4>
-      <p class="desc">24GB GDDR6X · The Ampere flagship, still holds up at 4K.</p>
+
+      <h4>
+        GeForce RTX 3090 Ti
+      </h4>
+
+      <p class="desc">
+        24GB GDDR6X · The Ampere flagship, still holds up at 4K.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱54,995</span>
-        <button class="add-btn" data-name="GeForce RTX 3090 Ti" data-price="₱54,995">Add to Cart</button>
+
+        <span class="price">
+          ₱54,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 3090 Ti"
+          data-price="₱54,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="30" data-name="GeForce RTX 3080">
-      <div class="card-badge ghost">Legacy</div>
+
+    <!-- RTX 3080 -->
+
+    <div
+      class="card"
+      data-series="30"
+      data-name="GeForce RTX 3080"
+    >
+
+      <div class="card-badge ghost">
+        Legacy
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="28" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="140" cy="50" r="28" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="#4a6e00"/><circle cx="140" cy="50" r="6" fill="#4a6e00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="28"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="28"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="6"
+            fill="#4a6e00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="6"
+            fill="#4a6e00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 3080</h4>
-      <p class="desc">10GB GDDR6X · A proven 1440p-to-4K workhorse.</p>
+
+      <h4>
+        GeForce RTX 3080
+      </h4>
+
+      <p class="desc">
+        10GB GDDR6X · A proven 1440p-to-4K workhorse.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱29,995</span>
-        <button class="add-btn" data-name="GeForce RTX 3080" data-price="₱29,995">Add to Cart</button>
+
+        <span class="price">
+          ₱29,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 3080"
+          data-price="₱29,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="30" data-name="GeForce RTX 3070">
-      <div class="card-badge ghost">Legacy</div>
+
+    <!-- RTX 3070 -->
+
+    <div
+      class="card"
+      data-series="30"
+      data-name="GeForce RTX 3070"
+    >
+
+      <div class="card-badge ghost">
+        Legacy
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="25" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="140" cy="50" r="25" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="60" cy="50" r="5" fill="#4a6e00"/><circle cx="140" cy="50" r="5" fill="#4a6e00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="25"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="25"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="60"
+            cy="50"
+            r="5"
+            fill="#4a6e00"
+          />
+
+          <circle
+            cx="140"
+            cy="50"
+            r="5"
+            fill="#4a6e00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 3070</h4>
-      <p class="desc">8GB GDDR6 · Reliable 1440p for a lean budget.</p>
+
+      <h4>
+        GeForce RTX 3070
+      </h4>
+
+      <p class="desc">
+        8GB GDDR6 · Reliable 1440p for a lean budget.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱21,995</span>
-        <button class="add-btn" data-name="GeForce RTX 3070" data-price="₱21,995">Add to Cart</button>
+
+        <span class="price">
+          ₱21,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 3070"
+          data-price="₱21,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="card" data-series="30" data-name="GeForce RTX 3060">
-      <div class="card-badge ghost">Legacy</div>
+
+    <!-- RTX 3060 -->
+
+    <div
+      class="card"
+      data-series="30"
+      data-name="GeForce RTX 3060"
+    >
+
+      <div class="card-badge ghost">
+        Legacy
+      </div>
+
       <div class="card-art">
-        <svg viewBox="0 0 220 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="200" height="80" rx="10" fill="#181a12" stroke="#2e3024" stroke-width="1.5"/><circle cx="80" cy="50" r="22" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="150" cy="50" r="22" fill="none" stroke="#2e3024" stroke-width="1.5"/><circle cx="80" cy="50" r="5" fill="#4a6e00"/><circle cx="150" cy="50" r="5" fill="#4a6e00"/></svg>
+
+        <svg
+          viewBox="0 0 220 100"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="10"
+            y="10"
+            width="200"
+            height="80"
+            rx="10"
+            fill="#181a12"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="22"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="22"
+            fill="none"
+            stroke="#2e3024"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="80"
+            cy="50"
+            r="5"
+            fill="#4a6e00"
+          />
+
+          <circle
+            cx="150"
+            cy="50"
+            r="5"
+            fill="#4a6e00"
+          />
+
+        </svg>
+
       </div>
-      <h4>GeForce RTX 3060</h4>
-      <p class="desc">12GB GDDR6 · Budget 1080p with room for bigger textures.</p>
+
+      <h4>
+        GeForce RTX 3060
+      </h4>
+
+      <p class="desc">
+        12GB GDDR6 · Budget 1080p with room for bigger textures.
+      </p>
+
       <div class="card-foot">
-        <span class="price">₱13,995</span>
-        <button class="add-btn" data-name="GeForce RTX 3060" data-price="₱13,995">Add to Cart</button>
+
+        <span class="price">
+          ₱13,995
+        </span>
+
+        <button
+          class="add-btn"
+          data-name="GeForce RTX 3060"
+          data-price="₱13,995"
+        >
+          Add to Cart
+        </button>
+
       </div>
+
     </div>
 
-    <div class="empty-state" id="emptyState">
+
+    <div
+      class="empty-state"
+      id="emptyState"
+    >
+
       No GPUs match your search or filter.
-      <div><button id="clearFilters">Clear search & filters</button></div>
+
+      <div>
+        <button id="clearFilters">
+          Clear search & filters
+        </button>
+      </div>
+
     </div>
 
   </div>
+
 </section>
+
+
+<!-- =========================
+     PERFORMANCE
+========================= -->
 
 <section class="perf" id="perf">
-  <h2 class="display">Numbers Don't Lower Their Settings.</h2>
-  <p class="lead">DLSS 4 with multi-frame generation, third-gen ray tracing cores, and fifth-gen Tensor Cores — measured, not marketed.</p>
+
+  <h2 class="display">
+    Numbers Don't Lower Their Settings.
+  </h2>
+
+  <p class="lead">
+    DLSS 4 with multi-frame generation, third-gen ray tracing cores,
+    and fifth-gen Tensor Cores — measured, not marketed.
+  </p>
+
   <div class="gauge-wrap">
+
     <div class="gauge">
-      <svg viewBox="0 0 200 120" aria-hidden="true">
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#2a2d20" stroke-width="10" stroke-linecap="round"/>
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#76b900" stroke-width="10" stroke-linecap="round" stroke-dasharray="267" stroke-dashoffset="30"/>
+
+      <svg
+        viewBox="0 0 200 120"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#2a2d20"
+          stroke-width="10"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#76b900"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-dasharray="267"
+          stroke-dashoffset="30"
+        />
+
       </svg>
-      <div class="g-num">3.2x</div>
-      <div class="g-label">Ray Tracing Uplift</div>
+
+      <div class="g-num">
+        3.2x
+      </div>
+
+      <div class="g-label">
+        Ray Tracing Uplift
+      </div>
+
     </div>
+
+
     <div class="gauge">
-      <svg viewBox="0 0 200 120" aria-hidden="true">
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#2a2d20" stroke-width="10" stroke-linecap="round"/>
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#76b900" stroke-width="10" stroke-linecap="round" stroke-dasharray="267" stroke-dashoffset="10"/>
+
+      <svg
+        viewBox="0 0 200 120"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#2a2d20"
+          stroke-width="10"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#76b900"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-dasharray="267"
+          stroke-dashoffset="10"
+        />
+
       </svg>
-      <div class="g-num">4x</div>
-      <div class="g-label">Frames via DLSS 4</div>
+
+      <div class="g-num">
+        4x
+      </div>
+
+      <div class="g-label">
+        Frames via DLSS 4
+      </div>
+
     </div>
+
+
     <div class="gauge">
-      <svg viewBox="0 0 200 120" aria-hidden="true">
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#2a2d20" stroke-width="10" stroke-linecap="round"/>
-        <path d="M15 105 A85 85 0 0 1 185 105" fill="none" stroke="#76b900" stroke-width="10" stroke-linecap="round" stroke-dasharray="267" stroke-dashoffset="60"/>
+
+      <svg
+        viewBox="0 0 200 120"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#2a2d20"
+          stroke-width="10"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M15 105 A85 85 0 0 1 185 105"
+          fill="none"
+          stroke="#76b900"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-dasharray="267"
+          stroke-dashoffset="60"
+        />
+
       </svg>
-      <div class="g-num">1.8x</div>
-      <div class="g-label">Rasterization vs Prior Gen</div>
+
+      <div class="g-num">
+        1.8x
+      </div>
+
+      <div class="g-label">
+        Rasterization vs Prior Gen
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section class="newsletter" id="support">
-  <h2 class="display">Get Driver Drops & Restock Alerts.</h2>
-  <form class="nl-form" id="nlForm" novalidate>
-    <div class="form-row" id="formRow">
-      <input type="email" id="nlEmail" placeholder="Enter your email" aria-describedby="nlMsg">
-      <button type="submit" aria-label="Subscribe">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#aef000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
+
+<section
+  class="newsletter"
+  id="support"
+>
+
+  <h2 class="display">
+    Get Driver Drops & Restock Alerts.
+  </h2>
+
+  <form
+    class="nl-form"
+    id="nlForm"
+    novalidate
+  >
+
+    <div
+      class="form-row"
+      id="formRow"
+    >
+
+      <input
+        type="email"
+        id="nlEmail"
+        placeholder="Enter your email"
+        aria-describedby="nlMsg"
+      >
+
+      <button
+        type="submit"
+        aria-label="Subscribe"
+      >
+
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="#aef000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </svg>
+
       </button>
+
     </div>
-    <div class="form-msg" id="nlMsg" aria-live="polite"></div>
+
+    <div
+      class="form-msg"
+      id="nlMsg"
+      aria-live="polite"
+    ></div>
+
   </form>
+
 </section>
+
+
+<!-- =========================
+     CHECKOUT MODAL
+========================= -->
+
+<div
+  class="checkout-overlay"
+  id="checkoutOverlay"
+>
+
+  <div
+    class="checkout-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="checkoutTitle"
+  >
+
+    <div class="checkout-header">
+
+      <div>
+
+        <h2
+          class="display"
+          id="checkoutTitle"
+        >
+          Checkout
+        </h2>
+
+        <p>
+          Complete your information to place your order.
+        </p>
+
+      </div>
+
+      <button
+        class="checkout-close"
+        id="checkoutClose"
+        aria-label="Close checkout"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form
+      id="checkoutForm"
+      novalidate
+    >
+
+      <!-- CUSTOMER INFORMATION -->
+
+      <div class="checkout-section">
+
+        <h3>
+          Customer Information
+        </h3>
+
+        <div class="checkout-grid">
+
+          <div class="checkout-field">
+
+            <label for="checkoutName">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="checkoutName"
+              placeholder="Juan Dela Cruz"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div class="checkout-field">
+
+            <label for="checkoutEmail">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="checkoutEmail"
+              placeholder="juan@email.com"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SHIPPING ADDRESS -->
+
+      <div class="checkout-section">
+
+        <h3>
+          Shipping Address
+        </h3>
+
+        <div class="checkout-grid">
+
+          <div class="checkout-field full">
+
+            <label for="checkoutAddress">
+              Complete Address
+            </label>
+
+            <input
+              type="text"
+              id="checkoutAddress"
+              placeholder="House No., Street, Barangay"
+              autocomplete="street-address"
+              required
+            >
+
+          </div>
+
+
+          <div class="checkout-field">
+
+            <label for="checkoutCity">
+              City / Municipality
+            </label>
+
+            <input
+              type="text"
+              id="checkoutCity"
+              placeholder="Quezon City"
+              autocomplete="address-level2"
+              required
+            >
+
+          </div>
+
+
+          <div class="checkout-field">
+
+            <label for="checkoutProvince">
+              Province
+            </label>
+
+            <input
+              type="text"
+              id="checkoutProvince"
+              placeholder="Metro Manila"
+              autocomplete="address-level1"
+              required
+            >
+
+          </div>
+
+
+          <div class="checkout-field">
+
+            <label for="checkoutPostal">
+              Postal Code
+            </label>
+
+            <input
+              type="text"
+              id="checkoutPostal"
+              placeholder="1100"
+              autocomplete="postal-code"
+              required
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PAYMENT -->
+
+      <div class="checkout-section">
+
+        <h3>
+          Payment Method
+        </h3>
+
+        <div class="payment-options">
+
+          <div class="payment-option">
+
+            <input
+              type="radio"
+              name="payment"
+              id="paymentCOD"
+              value="Cash on Delivery"
+              checked
+            >
+
+            <label for="paymentCOD">
+              Cash on Delivery
+            </label>
+
+          </div>
+
+
+          <div class="payment-option">
+
+            <input
+              type="radio"
+              name="payment"
+              id="paymentGCash"
+              value="GCash"
+            >
+
+            <label for="paymentGCash">
+              GCash
+            </label>
+
+          </div>
+
+
+          <div class="payment-option">
+
+            <input
+              type="radio"
+              name="payment"
+              id="paymentCard"
+              value="Credit / Debit Card"
+            >
+
+            <label for="paymentCard">
+              Credit / Debit Card
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER SUMMARY -->
+
+      <div class="checkout-summary">
+
+        <h3>
+          Order Summary
+        </h3>
+
+        <div id="checkoutItems"></div>
+
+        <div class="checkout-total">
+
+          <span>
+            Total
+          </span>
+
+          <span id="checkoutTotal">
+            ₱0
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="checkout-error"
+        id="checkoutError"
+      ></div>
+
+
+      <button
+        type="submit"
+        class="btn btn-solid checkout-submit"
+      >
+        Place Order
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
+
   <div class="foot-grid">
+
     <div class="foot-col">
-      <h5>Shop</h5>
+
+      <h5>
+        Shop
+      </h5>
+
       <ul>
-        <li><a href="#grid">RTX 5090</a></li>
-        <li><a href="#grid">RTX 5080</a></li>
-        <li><a href="#grid">RTX 5070 Ti</a></li>
-        <li><a href="#grid">RTX 5070</a></li>
-        <li><a href="#tiles">Laptops</a></li>
+
+        <li>
+          <a href="#grid">
+            RTX 5090
+          </a>
+        </li>
+
+        <li>
+          <a href="#grid">
+            RTX 5080
+          </a>
+        </li>
+
+        <li>
+          <a href="#grid">
+            RTX 5070 Ti
+          </a>
+        </li>
+
+        <li>
+          <a href="#grid">
+            RTX 5070
+          </a>
+        </li>
+
+        <li>
+          <a href="#tiles">
+            Laptops
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
+
     <div class="foot-col">
-      <h5>Technology</h5>
+
+      <h5>
+        Technology
+      </h5>
+
       <ul>
-        <li><a href="#perf">DLSS 4</a></li>
-        <li><a href="#perf">Ray Tracing</a></li>
-        <li><a href="#perf">Reflex</a></li>
-        <li><a href="#perf">Broadcast</a></li>
+
+        <li>
+          <a href="#perf">
+            DLSS 4
+          </a>
+        </li>
+
+        <li>
+          <a href="#perf">
+            Ray Tracing
+          </a>
+        </li>
+
+        <li>
+          <a href="#perf">
+            Reflex
+          </a>
+        </li>
+
+        <li>
+          <a href="#perf">
+            Broadcast
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
+
     <div class="foot-col">
-      <h5>Get Help</h5>
+
+      <h5>
+        Get Help
+      </h5>
+
       <ul>
-        <li><a href="#support">Order Status</a></li>
-        <li><a href="#support">Shipping</a></li>
-        <li><a href="#support">Returns</a></li>
-        <li><a href="#support">Driver Downloads</a></li>
+
+        <li>
+          <a href="#support">
+            Order Status
+          </a>
+        </li>
+
+        <li>
+          <a href="#support">
+            Shipping
+          </a>
+        </li>
+
+        <li>
+          <a href="#support">
+            Returns
+          </a>
+        </li>
+
+        <li>
+          <a href="#support">
+            Driver Downloads
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
+
     <div class="foot-col">
-      <h5>About</h5>
+
+      <h5>
+        About
+      </h5>
+
       <ul>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Investors</a></li>
-        <li><a href="#">Sustainability</a></li>
+
+        <li>
+          <a href="#">
+            News
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            Careers
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            Investors
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            Sustainability
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
+
     <div class="foot-col">
-      <h5>Follow</h5>
+
+      <h5>
+        Follow
+      </h5>
+
       <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">X / Twitter</a></li>
-        <li><a href="#">YouTube</a></li>
-        <li><a href="#">Discord</a></li>
+
+        <li>
+          <a href="#">
+            Instagram
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            X / Twitter
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            YouTube
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            Discord
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
   </div>
+
+
   <div class="foot-bottom">
-    <span>This is a fan-made concept layout, not an official NVIDIA site.</span>
+
+    <span>
+      This is a fan-made concept layout, not an official NVIDIA site.
+    </span>
+
     <div class="legal">
-      <a href="#">Terms of Use</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Cookie Settings</a>
+
+      <a href="#">
+        Terms of Use
+      </a>
+
+      <a href="#">
+        Privacy Policy
+      </a>
+
+      <a href="#">
+        Cookie Settings
+      </a>
+
     </div>
+
   </div>
+
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Back to top">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+<!-- =========================
+     BACK TO TOP
+========================= -->
+
+<button
+  class="to-top"
+  id="toTop"
+  aria-label="Back to top"
+>
+
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+
+    <path
+      d="M12 19V5M5 12l7-7 7 7"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+  </svg>
+
 </button>
 
-<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+  class="toast-stack"
+  id="toastStack"
+  aria-live="polite"
+></div>
+
 
 <script>
-  /* ---------------- FEEDBACK: hero FPS counter ---------------- */
+
+  /* =====================================================
+     HERO FPS COUNTER
+  ===================================================== */
+
   const fpsEl = document.getElementById('fpsCounter');
+
   let fps = 0;
+
   const target = 187;
+
   (function step(){
+
     fps += Math.ceil((target - fps) / 8) || 1;
-    if (fps >= target) fps = target;
+
+    if(fps >= target){
+      fps = target;
+    }
+
     fpsEl.textContent = fps;
-    if (fps < target) requestAnimationFrame(step);
+
+    if(fps < target){
+      requestAnimationFrame(step);
+    }
+
   })();
 
-  /* ---------------- TOAST helper (FEEDBACK) ---------------- */
-  const toastStack = document.getElementById('toastStack');
-  function showToast(message, {type='ok', undo=null} = {}){
+
+  /* =====================================================
+     TOAST
+  ===================================================== */
+
+  const toastStack =
+    document.getElementById('toastStack');
+
+
+  function showToast(
+    message,
+    {
+      type='ok',
+      undo=null
+    }={}
+  ){
+
     const el = document.createElement('div');
-    el.className = 'toast' + (type === 'error' ? ' error' : '');
-    el.innerHTML = `<span>${message}</span>`;
-    if (undo){
-      const btn = document.createElement('button');
-      btn.className = 'toast-undo';
-      btn.textContent = 'Undo';
-      btn.addEventListener('click', () => { undo(); el.remove(); });
+
+    el.className =
+      'toast' +
+      (type === 'error' ? ' error' : '');
+
+    el.innerHTML =
+      `<span>${message}</span>`;
+
+
+    if(undo){
+
+      const btn =
+        document.createElement('button');
+
+      btn.className =
+        'toast-undo';
+
+      btn.textContent =
+        'Undo';
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          undo();
+
+          el.remove();
+
+        }
+      );
+
       el.appendChild(btn);
+
     }
+
+
     toastStack.appendChild(el);
-    setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 300); }, 4000);
+
+
+    setTimeout(() => {
+
+      el.style.opacity = '0';
+
+      el.style.transition =
+        'opacity .3s';
+
+      setTimeout(
+        () => el.remove(),
+        300
+      );
+
+    },4000);
+
   }
 
-  /* ---------------- CART: visibility + feedback + error prevention ---------------- */
+
+  /* =====================================================
+     CART
+  ===================================================== */
+
   const cart = [];
-  const cartCountEl = document.getElementById('cartCount');
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartToggle = document.getElementById('cartToggle');
-  const cartPanel = document.getElementById('cartPanel');
+
+  const cartCountEl =
+    document.getElementById('cartCount');
+
+  const cartItemsEl =
+    document.getElementById('cartItems');
+
+  const cartToggle =
+    document.getElementById('cartToggle');
+
+  const cartPanel =
+    document.getElementById('cartPanel');
+
+  const checkoutButton =
+    document.getElementById('checkoutButton');
+
 
   function renderCart(){
-    cartCountEl.textContent = cart.length;
+
+    cartCountEl.textContent =
+      cart.length;
+
     cartCountEl.classList.add('bump');
-    setTimeout(() => cartCountEl.classList.remove('bump'), 250);
-    cartToggle.setAttribute('aria-label', `View cart, ${cart.length} item${cart.length === 1 ? '' : 's'}`);
-    if (cart.length === 0){
-      cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty. Add a GPU to get started.</p>';
+
+    setTimeout(
+      () => cartCountEl.classList.remove('bump'),
+      250
+    );
+
+
+    cartToggle.setAttribute(
+      'aria-label',
+      `View cart, ${cart.length} item${cart.length === 1 ? '' : 's'}`
+    );
+
+
+    if(cart.length === 0){
+
+      cartItemsEl.innerHTML =
+        '<p class="cart-empty">Your cart is empty. Add a GPU to get started.</p>';
+
+      checkoutButton.style.display =
+        'none';
+
       return;
+
     }
-    cartItemsEl.innerHTML = cart.map((item, i) => `
-      <div class="cart-item">
-        <div>
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-price">${item.price}</div>
+
+
+    cartItemsEl.innerHTML =
+      cart.map((item,i) => `
+
+        <div class="cart-item">
+
+          <div>
+
+            <div class="cart-item-name">
+              ${item.name}
+            </div>
+
+            <div class="cart-item-price">
+              ${item.price}
+            </div>
+
+          </div>
+
+          <button
+            class="cart-remove"
+            data-index="${i}"
+          >
+            Remove
+          </button>
+
         </div>
-        <button class="cart-remove" data-index="${i}">Remove</button>
-      </div>
-    `).join('');
-    cartItemsEl.querySelectorAll('.cart-remove').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = Number(btn.dataset.index);
-        const removed = cart[idx];
-        cart.splice(idx, 1);
-        renderCart();
-        showToast(`Removed ${removed.name}`, { undo: () => { cart.splice(idx, 0, removed); renderCart(); } });
+
+      `).join('');
+
+
+    cartItemsEl
+      .querySelectorAll('.cart-remove')
+      .forEach(btn => {
+
+        btn.addEventListener(
+          'click',
+          () => {
+
+            const idx =
+              Number(btn.dataset.index);
+
+            const removed =
+              cart[idx];
+
+            cart.splice(idx,1);
+
+            renderCart();
+
+            showToast(
+              `Removed ${removed.name}`,
+              {
+                undo:() => {
+
+                  cart.splice(
+                    idx,
+                    0,
+                    removed
+                  );
+
+                  renderCart();
+
+                }
+              }
+            );
+
+          }
+        );
+
       });
-    });
+
+
+    checkoutButton.style.display =
+      'flex';
+
   }
 
-  document.querySelectorAll('.add-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      // ERROR PREVENTION: disable immediately to block accidental double-add
-      if (btn.disabled) return;
-      btn.disabled = true;
-      const name = btn.dataset.name;
-      const price = btn.dataset.price;
-      cart.push({ name, price });
-      renderCart();
-      const original = btn.textContent;
-      btn.textContent = 'Added ✓';
-      btn.classList.add('added');
-      showToast(`Added ${name} to cart`, { undo: () => {
-        const idx = cart.findIndex(i => i.name === name && i.price === price);
-        if (idx > -1) cart.splice(idx, 1);
-        renderCart();
-      }});
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.remove('added');
-        btn.disabled = false;
-      }, 1400);
-    });
-  });
 
-  /* ---------------- SEARCH + CART panels: toggle, close on outside click / Esc ---------------- */
-  const searchToggle = document.getElementById('searchToggle');
-  const searchPanel = document.getElementById('searchPanel');
-  const searchInput = document.getElementById('searchInput');
+  /* =====================================================
+     ADD TO CART
+  ===================================================== */
+
+  document
+    .querySelectorAll('.add-btn')
+    .forEach(btn => {
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          if(btn.disabled){
+            return;
+          }
+
+          btn.disabled = true;
+
+
+          const name =
+            btn.dataset.name;
+
+          const price =
+            btn.dataset.price;
+
+
+          cart.push({
+            name,
+            price
+          });
+
+
+          renderCart();
+
+
+          const original =
+            btn.textContent;
+
+          btn.textContent =
+            'Added ✓';
+
+          btn.classList.add('added');
+
+
+          showToast(
+            `Added ${name} to cart`,
+            {
+              undo:() => {
+
+                const idx =
+                  cart.findIndex(
+                    i =>
+                      i.name === name &&
+                      i.price === price
+                  );
+
+                if(idx > -1){
+                  cart.splice(idx,1);
+                }
+
+                renderCart();
+
+              }
+            }
+          );
+
+
+          setTimeout(
+            () => {
+
+              btn.textContent =
+                original;
+
+              btn.classList.remove(
+                'added'
+              );
+
+              btn.disabled =
+                false;
+
+            },
+            1400
+          );
+
+        }
+      );
+
+    });
+
+
+  /* =====================================================
+     SEARCH + CART PANELS
+  ===================================================== */
+
+  const searchToggle =
+    document.getElementById('searchToggle');
+
+  const searchPanel =
+    document.getElementById('searchPanel');
+
+  const searchInput =
+    document.getElementById('searchInput');
+
 
   function closePanels(except){
-    if (except !== 'search'){ searchPanel.classList.remove('open'); searchToggle.setAttribute('aria-expanded','false'); }
-    if (except !== 'cart'){ cartPanel.classList.remove('open'); cartToggle.setAttribute('aria-expanded','false'); }
-  }
-  searchToggle.addEventListener('click', () => {
-    const open = !searchPanel.classList.contains('open');
-    closePanels(open ? 'search' : null);
-    searchPanel.classList.toggle('open', open);
-    searchToggle.setAttribute('aria-expanded', String(open));
-    if (open) searchInput.focus();
-  });
-  cartToggle.addEventListener('click', () => {
-    const open = !cartPanel.classList.contains('open');
-    closePanels(open ? 'cart' : null);
-    cartPanel.classList.toggle('open', open);
-    cartToggle.setAttribute('aria-expanded', String(open));
-  });
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-right')) closePanels(null);
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanels(null); });
 
-  /* ---------------- EFFICIENCY: live search + filter chips on product grid ---------------- */
-  const chips = document.querySelectorAll('.chip');
-  const cards = document.querySelectorAll('#productGrid .card');
-  const resultCount = document.getElementById('resultCount');
-  const emptyState = document.getElementById('emptyState');
-  let activeFilter = 'all';
+    if(except !== 'search'){
+
+      searchPanel.classList.remove(
+        'open'
+      );
+
+      searchToggle.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+    }
+
+
+    if(except !== 'cart'){
+
+      cartPanel.classList.remove(
+        'open'
+      );
+
+      cartToggle.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+    }
+
+  }
+
+
+  searchToggle.addEventListener(
+    'click',
+    () => {
+
+      const open =
+        !searchPanel.classList.contains(
+          'open'
+        );
+
+      closePanels(
+        open ? 'search' : null
+      );
+
+      searchPanel.classList.toggle(
+        'open',
+        open
+      );
+
+      searchToggle.setAttribute(
+        'aria-expanded',
+        String(open)
+      );
+
+      if(open){
+        searchInput.focus();
+      }
+
+    }
+  );
+
+
+  cartToggle.addEventListener(
+    'click',
+    () => {
+
+      const open =
+        !cartPanel.classList.contains(
+          'open'
+        );
+
+      closePanels(
+        open ? 'cart' : null
+      );
+
+      cartPanel.classList.toggle(
+        'open',
+        open
+      );
+
+      cartToggle.setAttribute(
+        'aria-expanded',
+        String(open)
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    'click',
+    e => {
+
+      if(
+        !e.target.closest('.nav-right')
+      ){
+
+        closePanels(null);
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    'keydown',
+    e => {
+
+      if(e.key === 'Escape'){
+
+        closePanels(null);
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     FILTERS + SEARCH
+  ===================================================== */
+
+  const chips =
+    document.querySelectorAll('.chip');
+
+  const cards =
+    document.querySelectorAll(
+      '#productGrid .card'
+    );
+
+  const resultCount =
+    document.getElementById(
+      'resultCount'
+    );
+
+  const emptyState =
+    document.getElementById(
+      'emptyState'
+    );
+
+  let activeFilter =
+    'all';
+
 
   function applyFilters(){
-    const query = searchInput.value.trim().toLowerCase();
+
+    const query =
+      searchInput.value
+        .trim()
+        .toLowerCase();
+
     let visible = 0;
+
+
     cards.forEach(card => {
-      const matchesFilter = activeFilter === 'all' || card.dataset.series === activeFilter;
-      const matchesQuery = !query || card.dataset.name.toLowerCase().includes(query);
-      const show = matchesFilter && matchesQuery;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
+
+      const matchesFilter =
+        activeFilter === 'all' ||
+        card.dataset.series ===
+          activeFilter;
+
+
+      const matchesQuery =
+        !query ||
+        card.dataset.name
+          .toLowerCase()
+          .includes(query);
+
+
+      const show =
+        matchesFilter &&
+        matchesQuery;
+
+
+      card.classList.toggle(
+        'hidden',
+        !show
+      );
+
+
+      if(show){
+        visible++;
+      }
+
     });
-    resultCount.textContent = `Showing ${visible} of ${cards.length}`;
-    emptyState.classList.toggle('show', visible === 0);
+
+
+    resultCount.textContent =
+      `Showing ${visible} of ${cards.length}`;
+
+
+    emptyState.classList.toggle(
+      'show',
+      visible === 0
+    );
+
   }
 
+
   chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeFilter = chip.dataset.filter;
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', applyFilters);
-  document.getElementById('clearFilters').addEventListener('click', () => {
-    searchInput.value = '';
-    chips.forEach(c => c.classList.remove('active'));
-    document.querySelector('.chip[data-filter="all"]').classList.add('active');
-    activeFilter = 'all';
-    applyFilters();
-  });
 
-  /* category tiles jump to the (filtered) grid — SIMPLICITY: one clear action */
-  document.querySelectorAll('.tile').forEach(tile => {
-    tile.addEventListener('click', () => {
-      document.getElementById(tile.dataset.jump).scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+    chip.addEventListener(
+      'click',
+      () => {
 
-  /* ---------------- ERROR PREVENTION + FEEDBACK: newsletter validation ---------------- */
-  const nlForm = document.getElementById('nlForm');
-  const nlEmail = document.getElementById('nlEmail');
-  const formRow = document.getElementById('formRow');
-  const nlMsg = document.getElementById('nlMsg');
+        chips.forEach(
+          c => c.classList.remove(
+            'active'
+          )
+        );
 
-  nlForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const value = nlEmail.value.trim();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    formRow.classList.remove('error', 'success');
-    nlMsg.classList.remove('error', 'success');
-    if (!value){
-      formRow.classList.add('error');
-      nlMsg.classList.add('error');
-      nlMsg.textContent = 'Enter your email to subscribe.';
-      nlEmail.focus();
-      return;
-    }
-    if (!valid){
-      formRow.classList.add('error');
-      nlMsg.classList.add('error');
-      nlMsg.textContent = 'That email doesn\u2019t look right — check the format and try again.';
-      nlEmail.focus();
-      return;
-    }
-    formRow.classList.add('success');
-    nlMsg.classList.add('success');
-    nlMsg.textContent = `You're subscribed — driver alerts will go to ${value}.`;
-    showToast('Subscribed to driver drops & restock alerts');
-    nlEmail.value = '';
-  });
+        chip.classList.add(
+          'active'
+        );
 
-  /* ---------------- VISIBILITY: active nav section on scroll ---------------- */
-  const navLinks = document.querySelectorAll('nav.primary a');
-  const sections = Array.from(navLinks).map(l => document.getElementById(l.dataset.section)).filter(Boolean);
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){
-        navLinks.forEach(l => l.classList.remove('active'));
-        const match = document.querySelector(`nav.primary a[data-section="${entry.target.id}"]`);
-        if (match) match.classList.add('active');
+        activeFilter =
+          chip.dataset.filter;
+
+        applyFilters();
+
       }
-    });
-  }, { rootMargin: '-40% 0px -50% 0px' });
-  sections.forEach(s => observer.observe(s));
+    );
 
-  /* ---------------- CLEAR NAVIGATION: back to top ---------------- */
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    toTop.classList.toggle('show', window.scrollY > 800);
   });
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  /* initial state */
+
+  searchInput.addEventListener(
+    'input',
+    applyFilters
+  );
+
+
+  document
+    .getElementById('clearFilters')
+    .addEventListener(
+      'click',
+      () => {
+
+        searchInput.value =
+          '';
+
+        chips.forEach(
+          c => c.classList.remove(
+            'active'
+          )
+        );
+
+        document
+          .querySelector(
+            '.chip[data-filter="all"]'
+          )
+          .classList.add('active');
+
+        activeFilter =
+          'all';
+
+        applyFilters();
+
+      }
+    );
+
+
+  /* =====================================================
+     CATEGORY TILES
+  ===================================================== */
+
+  document
+    .querySelectorAll('.tile')
+    .forEach(tile => {
+
+      tile.addEventListener(
+        'click',
+        () => {
+
+          document
+            .getElementById(
+              tile.dataset.jump
+            )
+            .scrollIntoView({
+              behavior:'smooth'
+            });
+
+        }
+      );
+
+    });
+
+
+  /* =====================================================
+     NEWSLETTER
+  ===================================================== */
+
+  const nlForm =
+    document.getElementById(
+      'nlForm'
+    );
+
+  const nlEmail =
+    document.getElementById(
+      'nlEmail'
+    );
+
+  const formRow =
+    document.getElementById(
+      'formRow'
+    );
+
+  const nlMsg =
+    document.getElementById(
+      'nlMsg'
+    );
+
+
+  nlForm.addEventListener(
+    'submit',
+    e => {
+
+      e.preventDefault();
+
+
+      const value =
+        nlEmail.value.trim();
+
+
+      const valid =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          .test(value);
+
+
+      formRow.classList.remove(
+        'error',
+        'success'
+      );
+
+      nlMsg.classList.remove(
+        'error',
+        'success'
+      );
+
+
+      if(!value){
+
+        formRow.classList.add(
+          'error'
+        );
+
+        nlMsg.classList.add(
+          'error'
+        );
+
+        nlMsg.textContent =
+          'Enter your email to subscribe.';
+
+        nlEmail.focus();
+
+        return;
+
+      }
+
+
+      if(!valid){
+
+        formRow.classList.add(
+          'error'
+        );
+
+        nlMsg.classList.add(
+          'error'
+        );
+
+        nlMsg.textContent =
+          'That email doesn’t look right — check the format and try again.';
+
+        nlEmail.focus();
+
+        return;
+
+      }
+
+
+      formRow.classList.add(
+        'success'
+      );
+
+      nlMsg.classList.add(
+        'success'
+      );
+
+      nlMsg.textContent =
+        `You're subscribed — driver alerts will go to ${value}.`;
+
+      showToast(
+        'Subscribed to driver drops & restock alerts'
+      );
+
+      nlEmail.value =
+        '';
+
+    }
+  );
+
+
+  /* =====================================================
+     NAVIGATION OBSERVER
+  ===================================================== */
+
+  const navLinks =
+    document.querySelectorAll(
+      'nav.primary a'
+    );
+
+  const sections =
+    Array.from(navLinks)
+      .map(
+        l =>
+          document.getElementById(
+            l.dataset.section
+          )
+      )
+      .filter(Boolean);
+
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if(entry.isIntersecting){
+
+            navLinks.forEach(
+              l =>
+                l.classList.remove(
+                  'active'
+                )
+            );
+
+
+            const match =
+              document.querySelector(
+                `nav.primary a[data-section="${entry.target.id}"]`
+              );
+
+
+            if(match){
+
+              match.classList.add(
+                'active'
+              );
+
+            }
+
+          }
+
+        });
+
+      },
+      {
+        rootMargin:
+          '-40% 0px -50% 0px'
+      }
+    );
+
+
+  sections.forEach(
+    s => observer.observe(s)
+  );
+
+
+  /* =====================================================
+     BACK TO TOP
+  ===================================================== */
+
+  const toTop =
+    document.getElementById(
+      'toTop'
+    );
+
+
+  window.addEventListener(
+    'scroll',
+    () => {
+
+      toTop.classList.toggle(
+        'show',
+        window.scrollY > 800
+      );
+
+    }
+  );
+
+
+  toTop.addEventListener(
+    'click',
+    () => {
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      });
+
+    }
+  );
+
+
+  /* =====================================================
+     CHECKOUT
+  ===================================================== */
+
+  const checkoutOverlay =
+    document.getElementById(
+      'checkoutOverlay'
+    );
+
+  const checkoutClose =
+    document.getElementById(
+      'checkoutClose'
+    );
+
+  const checkoutForm =
+    document.getElementById(
+      'checkoutForm'
+    );
+
+  const checkoutItems =
+    document.getElementById(
+      'checkoutItems'
+    );
+
+  const checkoutTotal =
+    document.getElementById(
+      'checkoutTotal'
+    );
+
+  const checkoutError =
+    document.getElementById(
+      'checkoutError'
+    );
+
+
+  const checkoutName =
+    document.getElementById(
+      'checkoutName'
+    );
+
+  const checkoutEmail =
+    document.getElementById(
+      'checkoutEmail'
+    );
+
+  const checkoutAddress =
+    document.getElementById(
+      'checkoutAddress'
+    );
+
+  const checkoutCity =
+    document.getElementById(
+      'checkoutCity'
+    );
+
+  const checkoutProvince =
+    document.getElementById(
+      'checkoutProvince'
+    );
+
+  const checkoutPostal =
+    document.getElementById(
+      'checkoutPostal'
+    );
+
+
+  /* Convert ₱62,995 into 62995 */
+
+  function priceToNumber(price){
+
+    return Number(
+      price
+        .replace('₱','')
+        .replace(/,/g,'')
+    );
+
+  }
+
+
+  /* Calculate total */
+
+  function getCartTotal(){
+
+    return cart.reduce(
+      (total,item) => {
+
+        return total +
+          priceToNumber(
+            item.price
+          );
+
+      },
+      0
+    );
+
+  }
+
+
+  /* Format Philippine peso */
+
+  function formatPeso(amount){
+
+    return '₱' +
+      amount.toLocaleString(
+        'en-PH'
+      );
+
+  }
+
+
+  /* Render checkout summary */
+
+  function renderCheckout(){
+
+    if(cart.length === 0){
+
+      checkoutItems.innerHTML =
+        `
+          <p style="color:var(--dim);font-size:12px;">
+            Your cart is empty.
+          </p>
+        `;
+
+      checkoutTotal.textContent =
+        '₱0';
+
+      return;
+
+    }
+
+
+    checkoutItems.innerHTML =
+      cart.map(item => `
+
+        <div class="checkout-summary-item">
+
+          <span>
+            ${item.name}
+          </span>
+
+          <span>
+            ${item.price}
+          </span>
+
+        </div>
+
+      `).join('');
+
+
+    checkoutTotal.textContent =
+      formatPeso(
+        getCartTotal()
+      );
+
+  }
+
+
+  /* Open checkout */
+
+  checkoutButton.addEventListener(
+    'click',
+    () => {
+
+      if(cart.length === 0){
+
+        showToast(
+          'Your cart is empty.',
+          {
+            type:'error'
+          }
+        );
+
+        return;
+
+      }
+
+
+      renderCheckout();
+
+
+      checkoutOverlay.classList.add(
+        'open'
+      );
+
+
+      document.body.classList.add(
+        'checkout-open'
+      );
+
+
+      checkoutError.classList.remove(
+        'show'
+      );
+
+      checkoutError.textContent =
+        '';
+
+
+      checkoutName.focus();
+
+    }
+  );
+
+
+  /* Close checkout */
+
+  function closeCheckout(){
+
+    checkoutOverlay.classList.remove(
+      'open'
+    );
+
+    document.body.classList.remove(
+      'checkout-open'
+    );
+
+  }
+
+
+  checkoutClose.addEventListener(
+    'click',
+    closeCheckout
+  );
+
+
+  /* Click outside modal */
+
+  checkoutOverlay.addEventListener(
+    'click',
+    e => {
+
+      if(
+        e.target ===
+        checkoutOverlay
+      ){
+
+        closeCheckout();
+
+      }
+
+    }
+  );
+
+
+  /* Escape closes checkout */
+
+  document.addEventListener(
+    'keydown',
+    e => {
+
+      if(
+        e.key === 'Escape' &&
+        checkoutOverlay.classList.contains(
+          'open'
+        )
+      ){
+
+        closeCheckout();
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     CHECKOUT FORM VALIDATION
+  ===================================================== */
+
+  checkoutForm.addEventListener(
+    'submit',
+    e => {
+
+      e.preventDefault();
+
+
+      checkoutError.classList.remove(
+        'show'
+      );
+
+      checkoutError.textContent =
+        '';
+
+
+      const name =
+        checkoutName.value.trim();
+
+      const email =
+        checkoutEmail.value.trim();
+
+      const address =
+        checkoutAddress.value.trim();
+
+      const city =
+        checkoutCity.value.trim();
+
+      const province =
+        checkoutProvince.value.trim();
+
+      const postal =
+        checkoutPostal.value.trim();
+
+
+      const payment =
+        document.querySelector(
+          'input[name="payment"]:checked'
+        );
+
+
+      /* Name */
+
+      if(!name){
+
+        checkoutError.textContent =
+          'Please enter your full name.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutName.focus();
+
+        return;
+
+      }
+
+
+      /* Email */
+
+      if(!email){
+
+        checkoutError.textContent =
+          'Please enter your email address.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutEmail.focus();
+
+        return;
+
+      }
+
+
+      /* Email format */
+
+      if(
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          .test(email)
+      ){
+
+        checkoutError.textContent =
+          'Please enter a valid email address.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutEmail.focus();
+
+        return;
+
+      }
+
+
+      /* Address */
+
+      if(!address){
+
+        checkoutError.textContent =
+          'Please enter your complete address.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutAddress.focus();
+
+        return;
+
+      }
+
+
+      /* City */
+
+      if(!city){
+
+        checkoutError.textContent =
+          'Please enter your city or municipality.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutCity.focus();
+
+        return;
+
+      }
+
+
+      /* Province */
+
+      if(!province){
+
+        checkoutError.textContent =
+          'Please enter your province.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutProvince.focus();
+
+        return;
+
+      }
+
+
+      /* Postal */
+
+      if(!postal){
+
+        checkoutError.textContent =
+          'Please enter your postal code.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        checkoutPostal.focus();
+
+        return;
+
+      }
+
+
+      /* Payment */
+
+      if(!payment){
+
+        checkoutError.textContent =
+          'Please select a payment method.';
+
+        checkoutError.classList.add(
+          'show'
+        );
+
+        return;
+
+      }
+
+
+      /* =================================================
+         CREATE ORDER
+      ================================================= */
+
+      const orderNumber =
+        'NV-' +
+        Date.now()
+          .toString()
+          .slice(-8);
+
+
+      const total =
+        getCartTotal();
+
+
+      /* Save order information locally */
+
+      const orderData = {
+
+        orderNumber,
+
+        customer:{
+
+          name,
+
+          email
+
+        },
+
+        shipping:{
+
+          address,
+
+          city,
+
+          province,
+
+          postal
+
+        },
+
+        payment:
+          payment.value,
+
+        items:
+          [...cart],
+
+        total,
+
+        date:
+          new Date().toISOString()
+
+      };
+
+
+      localStorage.setItem(
+        'lastNvidiaOrder',
+        JSON.stringify(
+          orderData
+        )
+      );
+
+
+      /* Close checkout */
+
+      closeCheckout();
+
+
+      /* Success toast */
+
+      showToast(
+        `Order ${orderNumber} placed successfully!`
+      );
+
+
+      /* Confirmation popup */
+
+      setTimeout(
+        () => {
+
+          alert(
+            `ORDER CONFIRMED\n\n` +
+
+            `Order #: ${orderNumber}\n` +
+
+            `Name: ${name}\n` +
+
+            `Email: ${email}\n` +
+
+            `Payment: ${payment.value}\n` +
+
+            `Total: ${formatPeso(total)}\n\n` +
+
+            `Shipping to:\n` +
+
+            `${address}, ${city}, ${province} ${postal}`
+          );
+
+        },
+        300
+      );
+
+
+      /* Clear cart */
+
+      cart.length =
+        0;
+
+
+      renderCart();
+
+
+      /* Reset form */
+
+      checkoutForm.reset();
+
+    }
+  );
+
+
+  /* =====================================================
+     INITIAL STATE
+  ===================================================== */
+
   applyFilters();
+
   renderCart();
+
 </script>
 
 </body>
